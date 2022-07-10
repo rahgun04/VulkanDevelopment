@@ -1,0 +1,6 @@
+# ninja log v5
+4	404	6791473930733305	src/CMakeFiles/SRC.dir/vk_init.cpp.obj	26bded2b6d8ff5bb
+6	413	6791473930891368	src/CMakeFiles/SRC.dir/vk_engine.cpp.obj	63f39943929131ac
+413	468	6791473931368918	src/SRC.lib	22ccc4ede33e1f6d
+1	622	6791473932973903	VulkanDevelopment/CMakeFiles/VulkanDevelopment.dir/VulkanDevelopment.cpp.obj	678a9044f59f2046
+623	913	6791473935621842	VulkanDevelopment/VulkanDevelopment.exe	cde7385913d725fd
