@@ -432,4 +432,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 
-/out
+out/
