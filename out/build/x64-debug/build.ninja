@@ -42,6 +42,12 @@ include CMakeFiles\rules.ninja
 cmake_ninja_workdir = D$:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\
 
 #############################################
+# Utility command for Shaders
+
+build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+
+
+#############################################
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
@@ -63,6 +69,78 @@ build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build CMakeFiles\install.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build install: phony CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build CMakeFiles\install\local.util: CUSTOM_COMMAND all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build install\local: phony CMakeFiles\install\local.util
+
+
+#############################################
+# Phony custom command for CMakeFiles\Shaders
+
+build CMakeFiles\Shaders | ${cmake_ninja_workdir}CMakeFiles\Shaders: phony ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+
+
+#############################################
+# Custom command for ..\..\..\shaders\coloured_triangle.frag.spv
+
+build ..\..\..\shaders\coloured_triangle.frag.spv | ${cmake_ninja_workdir}..\..\..\shaders\coloured_triangle.frag.spv: CUSTOM_COMMAND ..\..\..\shaders\coloured_triangle.frag
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/coloured_triangle.frag -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/coloured_triangle.frag.spv"
+  DESC = Generating ../../../shaders/coloured_triangle.frag.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\coloured_triangle.vert.spv
+
+build ..\..\..\shaders\coloured_triangle.vert.spv | ${cmake_ninja_workdir}..\..\..\shaders\coloured_triangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\coloured_triangle.vert
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/coloured_triangle.vert -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/coloured_triangle.vert.spv"
+  DESC = Generating ../../../shaders/coloured_triangle.vert.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\triangle.frag.spv
+
+build ..\..\..\shaders\triangle.frag.spv | ${cmake_ninja_workdir}..\..\..\shaders\triangle.frag.spv: CUSTOM_COMMAND ..\..\..\shaders\triangle.frag
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/triangle.frag -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/triangle.frag.spv"
+  DESC = Generating ../../../shaders/triangle.frag.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\triangle.vert.spv
+
+build ..\..\..\shaders\triangle.vert.spv | ${cmake_ninja_workdir}..\..\..\shaders\triangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\triangle.vert
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/triangle.vert -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/triangle.vert.spv"
+  DESC = Generating ../../../shaders/triangle.vert.spv
+  restat = 1
+
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
@@ -75,11 +153,11 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 #############################################
 # Order-only phony target for VulkanDevelopment
 
-build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_SRC
+build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_SRC cmake_object_order_depends_target_vk-bootstrap
 
 build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj: CXX_COMPILER__VulkanDevelopment_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\VulkanDevelopment\VulkanDevelopment.cpp || cmake_object_order_depends_target_VulkanDevelopment
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   OBJECT_FILE_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   TARGET_COMPILE_PDB = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\
@@ -93,10 +171,10 @@ build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.o
 #############################################
 # Link the executable VulkanDevelopment\VulkanDevelopment.exe
 
-build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib || src\SRC.lib
+build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib vk-bootstrap\vk-bootstrap.lib || src\SRC.lib vk-bootstrap\vk-bootstrap.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  vk-bootstrap\vk-bootstrap.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -128,6 +206,36 @@ build VulkanDevelopment\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
 
 build VulkanDevelopment\rebuild_cache: phony VulkanDevelopment\CMakeFiles\rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build VulkanDevelopment\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build VulkanDevelopment\CMakeFiles\install.util: CUSTOM_COMMAND VulkanDevelopment\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\VulkanDevelopment && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build VulkanDevelopment\install: phony VulkanDevelopment\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build VulkanDevelopment\CMakeFiles\install\local.util: CUSTOM_COMMAND VulkanDevelopment\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\VulkanDevelopment && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build VulkanDevelopment\install\local: phony VulkanDevelopment\CMakeFiles\install\local.util
+
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
@@ -140,11 +248,11 @@ build VulkanDevelopment\rebuild_cache: phony VulkanDevelopment\CMakeFiles\rebuil
 #############################################
 # Order-only phony target for SRC
 
-build cmake_object_order_depends_target_SRC: phony || src\CMakeFiles\SRC.dir
+build cmake_object_order_depends_target_SRC: phony || cmake_object_order_depends_target_vk-bootstrap
 
 build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_engine.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -152,7 +260,7 @@ build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug D$:\User
 
 build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_init.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -166,7 +274,7 @@ build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\
 #############################################
 # Link the static library src\SRC.lib
 
-build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj
+build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj || vk-bootstrap\vk-bootstrap.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = src\CMakeFiles\SRC.dir
@@ -199,6 +307,129 @@ build src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
 
 build src\rebuild_cache: phony src\CMakeFiles\rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build src\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build src\CMakeFiles\install.util: CUSTOM_COMMAND src\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\src && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build src\install: phony src\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build src\CMakeFiles\install\local.util: CUSTOM_COMMAND src\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\src && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build src\install\local: phony src\CMakeFiles\install\local.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target vk-bootstrap
+
+
+#############################################
+# Order-only phony target for vk-bootstrap
+
+build cmake_object_order_depends_target_vk-bootstrap: phony || vk-bootstrap\CMakeFiles\vk-bootstrap.dir
+
+build vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src\VkBootstrap.cpp.obj: CXX_COMPILER__vk-bootstrap_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src\VkBootstrap.cpp || cmake_object_order_depends_target_vk-bootstrap
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /W4
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\VulkanSDK\1.3.216.0\Include\vulkan
+  OBJECT_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir
+  OBJECT_FILE_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src
+  TARGET_COMPILE_PDB = vk-bootstrap\CMakeFiles\vk-bootstrap.dir\vk-bootstrap.pdb
+  TARGET_PDB = vk-bootstrap\vk-bootstrap.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target vk-bootstrap
+
+
+#############################################
+# Link the static library vk-bootstrap\vk-bootstrap.lib
+
+build vk-bootstrap\vk-bootstrap.lib: CXX_STATIC_LIBRARY_LINKER__vk-bootstrap_Debug vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src\VkBootstrap.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = vk-bootstrap\CMakeFiles\vk-bootstrap.dir\vk-bootstrap.pdb
+  TARGET_FILE = vk-bootstrap\vk-bootstrap.lib
+  TARGET_PDB = vk-bootstrap\vk-bootstrap.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build vk-bootstrap\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\vk-bootstrap && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build vk-bootstrap\edit_cache: phony vk-bootstrap\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build vk-bootstrap\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\vk-bootstrap && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\Users\rahul\Source\repos\VulkanDevelopment -BD:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build vk-bootstrap\rebuild_cache: phony vk-bootstrap\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build vk-bootstrap\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build vk-bootstrap\CMakeFiles\install.util: CUSTOM_COMMAND vk-bootstrap\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\vk-bootstrap && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build vk-bootstrap\install: phony vk-bootstrap\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build vk-bootstrap\CMakeFiles\install\local.util: CUSTOM_COMMAND vk-bootstrap\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\vk-bootstrap && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build vk-bootstrap\install\local: phony vk-bootstrap\CMakeFiles\install\local.util
+
 # =============================================================================
 # Target aliases.
 
@@ -210,6 +441,10 @@ build VulkanDevelopment: phony VulkanDevelopment\VulkanDevelopment.exe
 
 build VulkanDevelopment.exe: phony VulkanDevelopment\VulkanDevelopment.exe
 
+build vk-bootstrap: phony vk-bootstrap\vk-bootstrap.lib
+
+build vk-bootstrap.lib: phony vk-bootstrap\vk-bootstrap.lib
+
 # =============================================================================
 # Folder targets.
 
@@ -218,7 +453,7 @@ build VulkanDevelopment.exe: phony VulkanDevelopment\VulkanDevelopment.exe
 #############################################
 # Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug
 
-build all: phony VulkanDevelopment\all src\all
+build all: phony VulkanDevelopment\all src\all vk-bootstrap\all
 
 # =============================================================================
 
@@ -235,20 +470,27 @@ build VulkanDevelopment\all: phony VulkanDevelopment\VulkanDevelopment.exe
 build src\all: phony src\SRC.lib
 
 # =============================================================================
+
+#############################################
+# Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/vk-bootstrap
+
+build vk-bootstrap\all: phony vk-bootstrap\vk-bootstrap.lib
+
+# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\src\CMakeLists.txt CMakeCache.txt CMakeFiles\3.22.22040401-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCCompilerABI.c D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXCompilerABI.cpp D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCompilerIdDetection.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCXXCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompileFeatures.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompilerABI.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompilerId.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineRCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeFindBinUtils.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseImplicitIncludeInfo.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseImplicitLinkInfo.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseLibraryArchitecture.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystem.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCXXCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCompilerCommon.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestRCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ADSP-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ARMCC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ARMClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\AppleClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Borland-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Bruce-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Clang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Clang-DetermineCompilerInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Compaq-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Cray-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Embarcadero-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Fujitsu-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GHS-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GNU-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\HP-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\HP-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IAR-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Intel-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\NVHPC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\NVIDIA-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\PGI-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\PathScale-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SCO-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SDCC-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SunPro-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\TI-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Watcom-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XL-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XL-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XLClang-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\zOS-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Internal\FeatureTesting.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-Determine-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake
+build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\src\CMakeLists.txt ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.22.22040401-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\..\..\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\src\CMakeLists.txt CMakeCache.txt CMakeFiles\3.22.22040401-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCCompilerABI.c D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXCompilerABI.cpp D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCompilerIdDetection.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCXXCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompileFeatures.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompilerABI.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineCompilerId.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineRCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeDetermineSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeFindBinUtils.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseImplicitIncludeInfo.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseImplicitLinkInfo.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeParseLibraryArchitecture.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCCompiler.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystem.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCXXCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestCompilerCommon.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeTestRCCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ADSP-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ARMCC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\ARMClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\AppleClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Borland-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Bruce-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Clang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Clang-DetermineCompilerInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Compaq-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Cray-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Embarcadero-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Fujitsu-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GHS-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GNU-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\HP-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\HP-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IAR-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Intel-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\NVHPC-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\NVIDIA-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\PGI-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\PathScale-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SCO-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SDCC-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SunPro-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\TI-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\Watcom-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XL-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XL-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XLClang-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\zOS-C-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Internal\FeatureTesting.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-Determine-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake: phony
+build ..\..\..\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\src\CMakeLists.txt ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.22.22040401-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake: phony
 
 
 #############################################
