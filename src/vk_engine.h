@@ -108,9 +108,7 @@ public:
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 
-	VkPipelineLayout _trianglePipelineLayout;
-	VkPipeline _trianglePipeline;
-	VkPipeline _redTrianglePipeline;
+
 
 	VkPipelineLayout _meshPipelineLayout;
 	VkPipeline _meshPipeline;
