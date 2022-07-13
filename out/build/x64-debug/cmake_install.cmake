@@ -33,11 +33,33 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
+  # Include the install script for the subdirectory.
   include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/VulkanDevelopment/cmake_install.cmake")
-  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/src/cmake_install.cmake")
-  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/vk-bootstrap/cmake_install.cmake")
+endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/src/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/thirdParty/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/vk-bootstrap/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/tinyobjloader/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/glm/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

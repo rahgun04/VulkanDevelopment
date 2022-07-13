@@ -8,11 +8,19 @@ cmake_minimum_required (VERSION 3.8)
 file(GLOB Sources "*.cpp" ".h")
 add_executable(VulkanDevelopment ${Sources})
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET VulkanDevelopment PROPERTY CXX_STANDARD 20)
+
+
+
+if (MSVC AND WIN32 AND NOT MSVC_VERSION VERSION_LESS 142)
+
+
+
+    # option 2: apply the option on a per-target basis
+    target_link_options(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:/INCREMENTAL>)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:/ZI>)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:/Gm>)
+
 endif()
-
-
 
 target_link_libraries(VulkanDevelopment SRC)
 
