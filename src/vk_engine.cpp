@@ -8,7 +8,7 @@
 // --- other includes ---
 #include <vk_types.h>
 #include <vk_init.h>
-
+#include <map>
 
 #include <iostream>
 #include <chrono>
@@ -25,6 +25,9 @@ using namespace std::chrono;
 #include "vk_mem_alloc.h"
 
 #include <glm/gtx/transform.hpp>
+
+
+
 
 //we want to immediately abort when there is an error. In normal engines this would give an error message to the user, or perform a dump of state.
 using namespace std;
@@ -80,6 +83,7 @@ void VulkanEngine::init()
 
 void VulkanEngine::init_scene()
 {
+	/*
 	RenderObject monkey;
 	monkey.mesh = get_mesh("monkey");
 	monkey.material = get_material("defaultmesh");
@@ -100,6 +104,19 @@ void VulkanEngine::init_scene()
 			_renderables.push_back(tri);
 		}
 	}
+	*/
+	RenderObject monkey;
+	monkey.mesh = get_mesh("monkey");
+	monkey.material = get_material("defaultmesh");
+	
+	GameObject monkeyGO;
+	monkeyGO.renderObject = monkey;
+	monkeyGO.parent = nullptr;
+	monkeyGO.move_object(glm::mat4{ 1.0f });
+	gameObjects[gameObjectsIndex] = monkeyGO;
+	add_to_root(monkeyGO);
+
+
 }
 
 
@@ -867,8 +884,8 @@ void VulkanEngine::load_meshes()
 	_triangleMesh._vertices[2].position = { 0.f,-1.f, 0.5f };
 
 	_triangleMesh._vertices[0].color = { 0.f,1.f, 0.0f }; //pure green
-	_triangleMesh._vertices[1].color = { 0.f,1.f, 0.0f }; //pure green
-	_triangleMesh._vertices[2].color = { 0.f,1.f, 0.0f }; //pure green
+	_triangleMesh._vertices[1].color = { 1.f,0.f, 0.0f }; //pure green
+	_triangleMesh._vertices[2].color = { 0.f,0.f, 1.0f }; //pure green
 
 	//load the monkey
 	_monkeyMesh.load_from_obj("../../../../assets/monkey.obj");
@@ -970,6 +987,10 @@ void VulkanEngine::draw_objects(VkCommandBuffer cmd, RenderObject* first, int co
 	glm::mat4 projection = glm::perspective(glm::radians(70.f), 1700.f / 900.f, 0.1f, 200.0f);
 	projection[1][1] *= -1;
 
+
+
+
+	/*
 	Mesh* lastMesh = nullptr;
 	Material* lastMaterial = nullptr;
 	for (int i = 0; i < count; i++)
@@ -1004,4 +1025,18 @@ void VulkanEngine::draw_objects(VkCommandBuffer cmd, RenderObject* first, int co
 		//we can now draw
 		vkCmdDraw(cmd, object.mesh->_vertices.size(), 1, 0, 0);
 	}
+	*/
+	
+}
+
+void VulkanEngine::add_to_root(GameObject go)
+{
+
+	gameObjects[gameObjectsIndex] = go;
+	gameObjects[gameObjectsIndex].parent = nullptr;
+	root[rootGameObjectsIndex] = &gameObjects[gameObjectsIndex];
+
+	gameObjectsIndex++;
+	rootGameObjectsIndex++;
+
 }
