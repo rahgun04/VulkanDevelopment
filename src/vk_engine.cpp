@@ -586,7 +586,6 @@ void VulkanEngine::run()
 	SDL_Event e;
 	bool bQuit = false;
 	SDL_SetRelativeMouseMode(SDL_TRUE);
-
 	//main loop
 	while (!bQuit)
 	{
@@ -600,12 +599,11 @@ void VulkanEngine::run()
 			else if (e.type == SDL_KEYDOWN)
 			{
 				glm::mat4 inverted;
-
 				switch (e.key.keysym.sym) {
 				case(SDLK_w):
 					inverted = glm::inverse(cameraRotationTransform);
 					glm::vec3 forward = normalize(glm::vec3(inverted[2]));
-					_tgtPos +=  forward * 0.22f;
+					_tgtPos += forward * 0.22f;
 					break;
 				case(SDLK_a):
 					inverted = glm::inverse(cameraRotationTransform);
@@ -630,11 +628,11 @@ void VulkanEngine::run()
 			else if (e.type == SDL_MOUSEMOTION) {
 				pitch += glm::radians((float)e.motion.yrel) * 5;
 				yaw += glm::radians((float)e.motion.xrel) * 5;
-				
+
 			}
 			
 		}
-		_camPos = 0.125f * _tgtPos + 0.875f * _camPos;
+		_camPos = 0.025f * _tgtPos + 0.975f * _camPos;
 		draw();
 	}
 }
@@ -1004,19 +1002,14 @@ Mesh* VulkanEngine::get_mesh(const std::string& name)
 
 void VulkanEngine::draw_objects(VkCommandBuffer cmd, RenderObject* first, int count)
 {
-	//make a model view matrix for rendering the object
-	//camera view
-	//glm::vec3 camPos = { 0.f,-6.f,-10.f };
 	glm::vec3 camAxis = { 1,0,0 };
-	
-	glm::mat4 view = glm::rotate(glm::mat4(1.0f), (float) glm::radians(pitch), camAxis);
+
+	glm::mat4 view = glm::rotate(glm::mat4(1.0f), (float)glm::radians(pitch), camAxis);
 	camAxis = { 0,1,0 };
 	view = glm::rotate(view, (float)glm::radians(yaw), camAxis);
 	view = glm::translate(view, _camPos);
 	cameraRotationTransform = view;
-	
-	
-	
+
 	//camera projection
 	glm::mat4 projection = glm::perspective(glm::radians(70.f), 1700.f / 900.f, 0.1f, 200.0f);
 	projection[1][1] *= -1;
