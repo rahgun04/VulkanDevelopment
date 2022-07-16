@@ -52,9 +52,23 @@ struct DeletionQueue
 	}
 };
 
+
+struct FrameData {
+	VkSemaphore _presentSemaphore, _renderSemaphore;
+	VkFence _renderFence;
+
+	VkCommandPool _commandPool;
+	VkCommandBuffer _mainCommandBuffer;
+};
+
 class VulkanEngine {
 public:
+	glm::mat4 cameraRotationTransform{ 0 };
+	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
+	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
 
+	float pitch{ 0 };
+	float yaw{ 0 };
 	Mesh _monkeyMesh;
 
 	VmaAllocator _allocator; //vma lib allocator
