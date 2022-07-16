@@ -6,33 +6,19 @@
 #include <functional>
 #include <deque>
 #include "vk_mem_alloc.h"
-#include <vk_mesh.h>
+
 #include <glm/glm.hpp>
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
+#include <map>
+#include "vk_gameobject.h"
 
 using namespace std::chrono;
 
 
-struct Material {
-	VkPipeline pipeline;
-	VkPipelineLayout pipelineLayout;
-};
-
-struct RenderObject {
-	Mesh* mesh;
-
-	Material* material;
-
-	glm::mat4 transformMatrix;
-};
 
 
-struct MeshPushConstants {
-	glm::vec4 data;
-	glm::mat4 render_matrix;
-};
 
 struct DeletionQueue
 {
@@ -54,6 +40,16 @@ struct DeletionQueue
 
 class VulkanEngine {
 public:
+
+
+
+	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
+	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
+
+	float pitch{ 0 };
+	float yaw{ 0 };
+
+	glm::mat4 cameraRotationTransform;
 
 	Mesh _monkeyMesh;
 
@@ -159,6 +155,13 @@ public:
 
 
 private:
+
+	GameObject gameObjects[100];
+	int gameObjectsIndex = 0;
+	GameObject* root[100];
+	int rootGameObjectsIndex = 0;
+
+	void add_to_root(GameObject go);
 
 	void init_vulkan();
 

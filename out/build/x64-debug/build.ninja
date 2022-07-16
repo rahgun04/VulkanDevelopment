@@ -267,6 +267,14 @@ build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug D$:\User
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
   TARGET_PDB = src\SRC.pdb
 
+build src\CMakeFiles\SRC.dir\vk_gameobject.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_gameobject.cpp || cmake_object_order_depends_target_SRC
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = src\CMakeFiles\SRC.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
+  TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
+  TARGET_PDB = src\SRC.pdb
+
 build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_init.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
@@ -291,7 +299,7 @@ build src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\
 #############################################
 # Link the static library src\SRC.lib
 
-build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj || tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
+build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_gameobject.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj || tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = src\CMakeFiles\SRC.dir

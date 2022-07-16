@@ -1,5 +1,5 @@
 #include "vk_engine.h"
-
+#define GLM_SWIZZLE
 #include <SDL.h>
 #include <SDL_vulkan.h>
 
@@ -8,7 +8,7 @@
 // --- other includes ---
 #include <vk_types.h>
 #include <vk_init.h>
-
+#include <map>
 
 #include <iostream>
 #include <chrono>
@@ -25,6 +25,9 @@ using namespace std::chrono;
 #include "vk_mem_alloc.h"
 
 #include <glm/gtx/transform.hpp>
+
+
+
 
 //we want to immediately abort when there is an error. In normal engines this would give an error message to the user, or perform a dump of state.
 using namespace std;
@@ -71,7 +74,7 @@ void VulkanEngine::init()
 	init_pipelines();
 	load_meshes();
 	init_scene();
-
+	cameraRotationTransform = glm::mat4(1.0f);
 	//everything went fine
 	_isInitialized = true;
 }
@@ -80,6 +83,7 @@ void VulkanEngine::init()
 
 void VulkanEngine::init_scene()
 {
+	/*
 	RenderObject monkey;
 	monkey.mesh = get_mesh("monkey");
 	monkey.material = get_material("defaultmesh");
@@ -100,6 +104,19 @@ void VulkanEngine::init_scene()
 			_renderables.push_back(tri);
 		}
 	}
+	*/
+	RenderObject monkey;
+	monkey.mesh = get_mesh("monkey");
+	monkey.material = get_material("defaultmesh");
+	
+	GameObject monkeyGO;
+	monkeyGO.renderObject = monkey;
+	monkeyGO.parent = nullptr;
+	monkeyGO.move_object(glm::mat4{ 1.0f });
+	gameObjects[gameObjectsIndex] = monkeyGO;
+	add_to_root(monkeyGO);
+
+
 }
 
 
@@ -568,6 +585,7 @@ void VulkanEngine::run()
 {
 	SDL_Event e;
 	bool bQuit = false;
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 
 	//main loop
 	while (!bQuit)
@@ -581,17 +599,42 @@ void VulkanEngine::run()
 			}
 			else if (e.type == SDL_KEYDOWN)
 			{
-				if (e.key.keysym.sym == SDLK_SPACE)
-				{
-					_selectedShader += 1;
-					if (_selectedShader > 1)
-					{
-						_selectedShader = 0;
-					}
-				}
-			}
-		}
+				glm::mat4 inverted;
 
+				switch (e.key.keysym.sym) {
+				case(SDLK_w):
+					inverted = glm::inverse(cameraRotationTransform);
+					glm::vec3 forward = normalize(glm::vec3(inverted[2]));
+					_tgtPos +=  forward * 0.22f;
+					break;
+				case(SDLK_a):
+					inverted = glm::inverse(cameraRotationTransform);
+					glm::vec3 left = normalize(glm::vec3(inverted[0]));
+					_tgtPos += left * 0.22f;
+					break;
+				case(SDLK_s):
+					inverted = glm::inverse(cameraRotationTransform);
+					glm::vec3 back = -normalize(glm::vec3(inverted[2]));
+					_tgtPos += back * 0.22f;
+					break;
+				case(SDLK_d):
+					inverted = glm::inverse(cameraRotationTransform);
+					glm::vec3 right = -normalize(glm::vec3(inverted[0]));
+					_tgtPos += right * 0.22f;
+					break;
+				}
+
+
+
+			}
+			else if (e.type == SDL_MOUSEMOTION) {
+				pitch += glm::radians((float)e.motion.yrel) * 5;
+				yaw += glm::radians((float)e.motion.xrel) * 5;
+				
+			}
+			
+		}
+		_camPos = 0.125f * _tgtPos + 0.875f * _camPos;
 		draw();
 	}
 }
@@ -867,8 +910,8 @@ void VulkanEngine::load_meshes()
 	_triangleMesh._vertices[2].position = { 0.f,-1.f, 0.5f };
 
 	_triangleMesh._vertices[0].color = { 0.f,1.f, 0.0f }; //pure green
-	_triangleMesh._vertices[1].color = { 0.f,1.f, 0.0f }; //pure green
-	_triangleMesh._vertices[2].color = { 0.f,1.f, 0.0f }; //pure green
+	_triangleMesh._vertices[1].color = { 1.f,0.f, 0.0f }; //pure green
+	_triangleMesh._vertices[2].color = { 0.f,0.f, 1.0f }; //pure green
 
 	//load the monkey
 	_monkeyMesh.load_from_obj("../../../../assets/monkey.obj");
@@ -963,13 +1006,25 @@ void VulkanEngine::draw_objects(VkCommandBuffer cmd, RenderObject* first, int co
 {
 	//make a model view matrix for rendering the object
 	//camera view
-	glm::vec3 camPos = { 0.f,-6.f,-10.f };
-
-	glm::mat4 view = glm::translate(glm::mat4(1.f), camPos);
+	//glm::vec3 camPos = { 0.f,-6.f,-10.f };
+	glm::vec3 camAxis = { 1,0,0 };
+	
+	glm::mat4 view = glm::rotate(glm::mat4(1.0f), (float) glm::radians(pitch), camAxis);
+	camAxis = { 0,1,0 };
+	view = glm::rotate(view, (float)glm::radians(yaw), camAxis);
+	view = glm::translate(view, _camPos);
+	cameraRotationTransform = view;
+	
+	
+	
 	//camera projection
 	glm::mat4 projection = glm::perspective(glm::radians(70.f), 1700.f / 900.f, 0.1f, 200.0f);
 	projection[1][1] *= -1;
 
+
+
+
+	/*
 	Mesh* lastMesh = nullptr;
 	Material* lastMaterial = nullptr;
 	for (int i = 0; i < count; i++)
@@ -1004,4 +1059,18 @@ void VulkanEngine::draw_objects(VkCommandBuffer cmd, RenderObject* first, int co
 		//we can now draw
 		vkCmdDraw(cmd, object.mesh->_vertices.size(), 1, 0, 0);
 	}
+	*/
+	
+}
+
+void VulkanEngine::add_to_root(GameObject go)
+{
+
+	gameObjects[gameObjectsIndex] = go;
+	gameObjects[gameObjectsIndex].parent = nullptr;
+	root[rootGameObjectsIndex] = &gameObjects[gameObjectsIndex];
+
+	gameObjectsIndex++;
+	rootGameObjectsIndex++;
+
 }
