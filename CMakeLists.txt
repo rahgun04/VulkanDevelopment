@@ -17,7 +17,7 @@ add_subdirectory ("thirdParty")
 add_subdirectory(vk-bootstrap)
 add_subdirectory("tinyobjloader")
 add_subdirectory(glm)
-
+add_subdirectory(ovr_sdk_win_32.0.0)
 
 
 

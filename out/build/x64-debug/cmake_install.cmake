@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "D:/Users/rahul/Source/repos/VulkanDevelopment/out/install/x64-debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/VulkanDevelopment")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -60,6 +60,11 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/glm/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/ovr_sdk_win_32.0.0/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

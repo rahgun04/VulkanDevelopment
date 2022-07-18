@@ -13,7 +13,8 @@
 #include <unordered_map>
 
 using namespace std::chrono;
-
+//number of frames to overlap when rendering
+constexpr unsigned int FRAME_OVERLAP = 2;
 
 struct Material {
 	VkPipeline pipeline;
@@ -109,8 +110,7 @@ public:
 	VkQueue _graphicsQueue; //queue we will submit to
 	uint32_t _graphicsQueueFamily; //family of that queue
 
-	VkCommandPool _commandPool; //the command pool for our commands
-	VkCommandBuffer _mainCommandBuffer; //the buffer we will record into
+
 
 
 	VkRenderPass _renderPass;
@@ -118,9 +118,6 @@ public:
 	std::vector<VkFramebuffer> _framebuffers;
 
 
-	//Semaphore and Fence
-	VkSemaphore _presentSemaphore, _renderSemaphore;
-	VkFence _renderFence;
 
 
 
@@ -146,8 +143,9 @@ public:
 	//run main loop
 	void run();
 
+	FrameData& get_current_frame();
 
-
+	FrameData _frames[FRAME_OVERLAP];
 
 	//default array of renderable objects
 	std::vector<RenderObject> _renderables;
