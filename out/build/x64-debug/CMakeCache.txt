@@ -15,7 +15,7 @@
 ########################
 
 //Path to a program.
-CMAKE_AR:FILEPATH=D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/lib.exe
+CMAKE_AR:FILEPATH=D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.32.31326/bin/Hostx64/x64/lib.exe
 
 //No help, variable specified on the command line.
 CMAKE_BUILD_TYPE:STRING=Debug
@@ -116,8 +116,8 @@ CMAKE_INSTALL_MANDIR:PATH=
 //C header files for non-gcc (/usr/include)
 CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
 
-//Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/VulkanDevelopment
+//No help, variable specified on the command line.
+CMAKE_INSTALL_PREFIX:PATH=D:/Users/rahul/Source/repos/VulkanDevelopment/out/install/x64-debug
 
 //Run-time variable data (LOCALSTATEDIR/run)
 CMAKE_INSTALL_RUNSTATEDIR:PATH=
@@ -132,7 +132,7 @@ CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
 CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/link.exe
+CMAKE_LINKER:FILEPATH=D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.32.31326/bin/Hostx64/x64/link.exe
 
 //make program
 CMAKE_MAKE_PROGRAM:FILEPATH=D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe
@@ -185,7 +185,7 @@ CMAKE_PROJECT_VERSION_PATCH:STATIC=9
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=9
 
 //RC compiler
-CMAKE_RC_COMPILER:FILEPATH=C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/rc.exe
+CMAKE_RC_COMPILER:FILEPATH=rc
 
 //Flags for Windows Resource Compiler during all build types.
 CMAKE_RC_FLAGS:STRING=-DWIN32
@@ -274,6 +274,9 @@ LibOVRKernel_LIB_DEPENDS:STATIC=general;LibOVR;general;PC_SDK_Logging;
 OCULUSPCSDK_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/ovr_sdk_win_32.0.0
 
 //Value Computed by CMake
+OCULUSPCSDK_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
 OCULUSPCSDK_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/ovr_sdk_win_32.0.0
 
 //OpenGL library for win32
@@ -283,7 +286,7 @@ OPENGL_gl_LIBRARY:STRING=opengl32
 OPENGL_glu_LIBRARY:STRING=glu32
 
 //Dependencies for the target
-SRC_LIB_DEPENDS:STATIC=general;D:/SDL2-2.0.22/lib/x64/SDL2.lib;general;D:/VulkanSDK/1.3.216.0/Lib/vulkan-1.lib;general;vk-bootstrap::vk-bootstrap;general;vma;general;glm::glm;general;tinyobjloader;
+SRC_LIB_DEPENDS:STATIC=general;D:/SDL2-2.0.22/lib/x64/SDL2.lib;general;D:/VulkanSDK/1.3.216.0/Lib/vulkan-1.lib;general;vk-bootstrap::vk-bootstrap;general;vma;general;glm::glm;general;tinyobjloader;general;LibOVR;
 
 //Build OBJ Sticher Application
 TINYOBJLOADER_BUILD_OBJ_STICHER:BOOL=OFF
@@ -307,13 +310,22 @@ VK_BOOTSTRAP_WERROR:BOOL=OFF
 VulkanBootstrap_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/vk-bootstrap
 
 //Value Computed by CMake
+VulkanBootstrap_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
 VulkanBootstrap_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/vk-bootstrap
 
 //Value Computed by CMake
 VulkanDevelopment_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug
 
 //Value Computed by CMake
+VulkanDevelopment_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
 VulkanDevelopment_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment
+
+//Path to a program.
+Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=D:/VulkanSDK/1.3.216.0/Bin/glslangValidator.exe
 
 //Path to a program.
 Vulkan_GLSLC_EXECUTABLE:FILEPATH=D:/VulkanSDK/1.3.216.0/Bin/glslc.exe
@@ -328,10 +340,16 @@ Vulkan_LIBRARY:FILEPATH=D:/VulkanSDK/1.3.216.0/Lib/vulkan-1.lib
 glm_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/glm
 
 //Value Computed by CMake
+glm_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
 glm_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/glm
 
 //Value Computed by CMake
 tinyobjloader_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/tinyobjloader
+
+//Value Computed by CMake
+tinyobjloader_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 tinyobjloader_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/tinyobjloader
@@ -507,12 +525,16 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[opengl32][c ][v()]
+//Details about finding Vulkan
+FIND_PACKAGE_MESSAGE_DETAILS_Vulkan:INTERNAL=[D:/VulkanSDK/1.3.216.0/Lib/vulkan-1.lib][D:\VulkanSDK\1.3.216.0\Include\vulkan][v()]
 //ADVANCED property for variable: OPENGL_gl_LIBRARY
 OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_glu_LIBRARY
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: VK_BOOTSTRAP_VULKAN_HEADER_DIR
 VK_BOOTSTRAP_VULKAN_HEADER_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Vulkan_GLSLANG_VALIDATOR_EXECUTABLE
+Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_GLSLC_EXECUTABLE
 Vulkan_GLSLC_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_INCLUDE_DIR
@@ -520,5 +542,5 @@ Vulkan_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_LIBRARY
 Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/VulkanDevelopment
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=D:/Users/rahul/Source/repos/VulkanDevelopment/out/install/x64-debug
 

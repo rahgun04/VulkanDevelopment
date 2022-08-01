@@ -11,10 +11,29 @@
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
+#include "OVR_CAPI.h"
+#include "OVR_ErrorCode.h"
+#include "OVR_Version.h"
 
 using namespace std::chrono;
 //number of frames to overlap when rendering
 constexpr unsigned int FRAME_OVERLAP = 2;
+
+struct VrApi {
+	// Get the required Vulkan extensions for Vulkan instance creation
+	std::function<bool(char* extensionNames, uint32_t* extensionNamesSize)> GetInstanceExtensionsVk;
+	// Get the physical device corresponding to the VR session
+	std::function<bool(VkInstance instance, VkPhysicalDevice* physicalDevice)> GetSessionPhysicalDeviceVk;
+	// Get the required Vulkan extensions for Vulkan device creation
+	std::function<bool(char* extensionNames, uint32_t* extensionNamesSize)> GetDeviceExtensionsVk;
+	// Create the vulkan instance (nullptr => call vkCreateInstance)
+	std::function<VkResult(PFN_vkGetInstanceProcAddr pfnGetInstanceProcAddr, const VkInstanceCreateInfo* pCreateInfo,
+		const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)> CreateInstanceVk;
+	// Create the vulkan device (nullptr => call vkCreateDevice)
+	std::function<VkResult(PFN_vkGetInstanceProcAddr pfnGetInstanceProcAddr, VkPhysicalDevice physicalDevice,
+		const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)> CreateDeviceVk;
+};
+
 
 struct Material {
 	VkPipeline pipeline;
@@ -81,8 +100,7 @@ public:
 	int _selectedShader{ 0 };
 
 
-	VkImageView _depthImageView;
-	AllocatedImage _depthImage;
+	
 
 	//the format for the depth image
 	VkFormat _depthFormat;
@@ -102,9 +120,10 @@ public:
 
 	//array of images from the swapchain
 	std::vector<VkImage> _swapchainImages;
-
+	std::vector<AllocatedImage> _swapchainDepthImages;
 	//array of image-views from the swapchain
 	std::vector<VkImageView> _swapchainImageViews;
+	std::vector<VkImageView> _swapchainDepthImageViews;
 
 
 	VkQueue _graphicsQueue; //queue we will submit to
@@ -191,6 +210,32 @@ private:
 	void upload_mesh(Mesh& mesh);
 
 	void VulkanEngine::init_scene();
+
+
+
+
+	//Oculus Specific
+	VrApi vrApi;
+
+	ovrSession                  _session;
+	ovrGraphicsLuid             _luid;
+
+	ovrTextureSwapChain         textureChain;
+	ovrTextureSwapChain         depthChain;
+
+	//array of images from the swapchain
+	std::vector<VkImage> _oculusDepthSwapchainImages;
+	std::vector<VkImage> _oculusSwapchainImages;
+
+	void init_oculus();
+	void create_oculus_swapchain();
+	void init_oculus_commands();
+	void init_oculus_frameBuffer();
+	FrameData _oculusFrames[FRAME_OVERLAP];
+	FrameData& get_current_oculus_frame();
+	std::vector<VkFramebuffer> _oculusFramebuffers;
+
+
 
 };
 

@@ -137,7 +137,7 @@ do { \
     if (!(exp)) \
     { \
         Debug.Log(std::string(__FILE__) + "(" + std::to_string(__LINE__) + "): " + #exp " failed"); \
-        Release(); \
+        
         return false; \
     } \
 } while (0)
@@ -174,7 +174,6 @@ do { \
         ovrErrorInfo info; \
         ovr_GetLastErrorInfo(&info); \
         Debug.Log(std::string(__FILE__) + "(" + std::to_string(__LINE__) + "): " + #exp + " returned " + std::string(info.ErrorString) + " code " + std::to_string(ret)); \
-        Release(); \
         return false; \
     } \
 } while (0)

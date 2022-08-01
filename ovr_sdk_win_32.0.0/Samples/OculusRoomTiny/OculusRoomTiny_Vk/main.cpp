@@ -616,6 +616,7 @@ static bool MainLoop(bool retryCreate)
         // Blit mirror texture to the swapchain's back buffer
         // For now block until we have an output to render into
         // The swapchain uses VK_PRESENT_MODE_IMMEDIATE_KHR or VK_PRESENT_MODE_MAILBOX_KHR to avoid blocking eye rendering
+        // The swapchain uses VK_PRESENT_MODE_IMMEDIATE_KHR or VK_PRESENT_MODE_MAILBOX_KHR to avoid blocking eye rendering
         Platform.sc.Acquire();
 
         Platform.xferCmd.Reset();

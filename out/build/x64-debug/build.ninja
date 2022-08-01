@@ -156,11 +156,11 @@ build ..\..\..\shaders\triangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\triang
 #############################################
 # Order-only phony target for VulkanDevelopment
 
-build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_SRC cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
+build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_SRC cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
 
 build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj: CXX_COMPILER__VulkanDevelopment_Debug ..\..\..\VulkanDevelopment\VulkanDevelopment.cpp || cmake_object_order_depends_target_VulkanDevelopment
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader -I..\..\..\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   OBJECT_FILE_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   TARGET_COMPILE_PDB = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\
@@ -174,10 +174,10 @@ build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.o
 #############################################
 # Link the executable VulkanDevelopment\VulkanDevelopment.exe
 
-build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib vk-bootstrap\vk-bootstrap.lib tinyobjloader\tinyobjloader.lib || src\SRC.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
+build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib vk-bootstrap\vk-bootstrap.lib tinyobjloader\tinyobjloader.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib src\SRC.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console  /INCREMENTAL
-  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  vk-bootstrap\vk-bootstrap.lib  tinyobjloader\tinyobjloader.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  vk-bootstrap\vk-bootstrap.lib  tinyobjloader\tinyobjloader.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -251,11 +251,11 @@ build VulkanDevelopment\list_install_components: phony
 #############################################
 # Order-only phony target for SRC
 
-build cmake_object_order_depends_target_SRC: phony || cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
+build cmake_object_order_depends_target_SRC: phony || cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
 
 build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..\src\vk_engine.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader -I..\..\..\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -263,7 +263,7 @@ build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..
 
 build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..\src\vk_init.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader -I..\..\..\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -271,7 +271,7 @@ build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..\s
 
 build src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..\src\vk_mesh.cpp || cmake_object_order_depends_target_SRC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -I..\..\..\src -I..\..\..\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -I..\..\..\vk-bootstrap\src -I..\..\..\thirdParty\vma -I..\..\..\glm -I..\..\..\tinyobjloader -I..\..\..\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -285,7 +285,7 @@ build src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj: CXX_COMPILER__SRC_Debug ..\..\..\s
 #############################################
 # Link the static library src\SRC.lib
 
-build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj || tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
+build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = src\CMakeFiles\SRC.dir
@@ -2264,6 +2264,54 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\list_install_c
 # D:/Users/rahul/Source/repos/VulkanDevelopment/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/CMakeLists.txt
 # =============================================================================
 
+# =============================================================================
+# Object build statements for EXECUTABLE target OculusRoomTiny_Vk
+
+
+#############################################
+# Order-only phony target for OculusRoomTiny_Vk
+
+build cmake_object_order_depends_target_OculusRoomTiny_Vk: phony || cmake_object_order_depends_target_LibOVR ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.frag.spv ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.vert.spv
+
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\main.cpp.obj: CXX_COMPILER__OculusRoomTiny_Vk_Debug ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\main.cpp || cmake_object_order_depends_target_OculusRoomTiny_Vk
+  DEFINES = -DUNICODE -D_UNICODE
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -Iovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk -I..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk -I..\..\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\VulkanSDK\1.3.216.0\Include\vulkan
+  OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir
+  OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir
+  TARGET_COMPILE_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\
+  TARGET_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.pdb
+
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\ort.rc.res: RC_COMPILER__OculusRoomTiny_Vk_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.rc || cmake_object_order_depends_target_OculusRoomTiny_Vk
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\ort.rc.res.d
+  FLAGS = -DWIN32 -D_DEBUG
+  INCLUDES = -I D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk -I D:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk -I D:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -I D:\VulkanSDK\1.3.216.0\Include\vulkan
+  OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir
+  OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir
+  TARGET_COMPILE_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\
+  TARGET_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target OculusRoomTiny_Vk
+
+
+#############################################
+# Link the executable ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe
+
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe: CXX_EXECUTABLE_LINKER__OculusRoomTiny_Vk_Debug ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\main.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\ort.rc.res | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
+  LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeFiles\OculusRoomTiny_Vk.dir\
+  TARGET_FILE = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe
+  TARGET_IMPLIB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.lib
+  TARGET_PDB = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.pdb
+
 
 #############################################
 # Utility command for install/local
@@ -2316,6 +2364,24 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\rebuild_cache:
 # Utility command for list_install_components
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\list_install_components: phony
+
+
+#############################################
+# Custom command for ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.frag.spv
+
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.frag.spv: CUSTOM_COMMAND ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.frag D$:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.frag || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V -o D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/OculusRoomTiny_Vk/ort.frag.spv D:/Users/rahul/Source/repos/VulkanDevelopment/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/OculusRoomTiny_Vk/ort.frag"
+  DESC = Compiling ort.frag
+  restat = 1
+
+
+#############################################
+# Custom command for ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.vert.spv
+
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.vert.spv: CUSTOM_COMMAND ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.vert D$:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\ort.vert || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk && D:\VulkanSDK\1.3.216.0\Bin\glslangValidator.exe -V -o D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/OculusRoomTiny_Vk/ort.vert.spv D:/Users/rahul/Source/repos/VulkanDevelopment/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/OculusRoomTiny_Vk/ort.vert"
+  DESC = Compiling ort.vert
+  restat = 1
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -2493,6 +2559,10 @@ build OculusRoomTiny_GL: phony ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusR
 
 build OculusRoomTiny_GL.exe: phony ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\OculusRoomTiny_GL.exe
 
+build OculusRoomTiny_Vk: phony ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe
+
+build OculusRoomTiny_Vk.exe: phony ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe
+
 build OculusWorldDemo: phony ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo.exe
 
 build OculusWorldDemo.exe: phony ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo.exe
@@ -2650,7 +2720,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\all: phony ovr
 #############################################
 # Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/ovr_sdk_win_32.0.0/Samples/OculusRoomTiny/OculusRoomTiny_Vk
 
-build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\all: phony
+build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\all: phony ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\OculusRoomTiny_Vk.exe
 
 # =============================================================================
 

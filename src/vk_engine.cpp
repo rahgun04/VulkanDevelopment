@@ -19,12 +19,23 @@ using namespace std::chrono;
 #include "VkBootstrap.h"
 
 
+#include <stdio.h>
 #include <iostream>
 
 #define VMA_IMPLEMENTATION
 #include "vk_mem_alloc.h"
 
 #include <glm/gtx/transform.hpp>
+
+
+#include "OVR_CAPI_Vk.h"
+
+
+
+
+
+
+
 
 //we want to immediately abort when there is an error. In normal engines this would give an error message to the user, or perform a dump of state.
 using namespace std;
@@ -39,9 +50,139 @@ using namespace std;
 		}                                                           \
 	} while (0)
 
+#define CHECKOVR(exp) \
+do { \
+    auto ret = (exp); \
+    if (!OVR_SUCCESS(ret)) \
+    { \
+        ovrErrorInfo info; \
+        ovr_GetLastErrorInfo(&info); \
+        printf("%s\n",info.ErrorString);\
+         \
+    } \
+} while (0)
+
+void VulkanEngine::init_oculus() {
+	// Initializes LibOVR, and the Rift
+
+	ovrSession                  session;
+	ovrGraphicsLuid             luid;
+	ovrInitParams initParams = { ovrInit_RequestVersion | ovrInit_FocusAware, 64, NULL, 0, 0 };
+	ovrResult result = ovr_Initialize(&initParams);
+	if (result >= 0) {
+		ovrErrorInfo errorInfo;
+		ovr_GetLastErrorInfo(&errorInfo);
+		cout << "LibOVR Init Error: " << errorInfo.ErrorString << "\n";
+	}
+	result = ovr_Create(&session, &luid);
+	if (!OVR_SUCCESS(result)) {
+		cout << "FAil  to ovr_Create();\n";
+	}
+	_session = session;
+	_luid = luid;
+	ovrHmdDesc hmdDesc = ovr_GetHmdDesc(session);
+
+	//setup SDL window Size
+	_windowExtent.width = hmdDesc.Resolution.w / 2;
+	_windowExtent.height = hmdDesc.Resolution.h / 2;
+	
+}
+
+void VulkanEngine::init_oculus_frameBuffer() {
+
+}
+
+
+void VulkanEngine::create_oculus_swapchain() {
+	// depth
+	ovrTextureSwapChainDesc depthDesc = {};
+	depthDesc.Type = ovrTexture_2D;
+	depthDesc.ArraySize = 1;
+	depthDesc.Format = OVR_FORMAT_D32_FLOAT;
+	depthDesc.Width = (int)_windowExtent.width;
+	depthDesc.Height = (int)_windowExtent.height;
+	depthDesc.MipLevels = 1;
+	depthDesc.SampleCount = 1;
+	depthDesc.MiscFlags = ovrTextureMisc_DX_Typeless;
+	depthDesc.BindFlags = ovrTextureBind_DX_DepthStencil;
+	depthDesc.StaticImage = ovrFalse;
+	CHECKOVR(ovr_CreateTextureSwapChainVk(_session, _device, &depthDesc, &depthChain));
+
+	// color
+	ovrTextureSwapChainDesc colorDesc = {};
+	colorDesc.Type = ovrTexture_2D;
+	colorDesc.ArraySize = 1;
+	colorDesc.Format = OVR_FORMAT_B8G8R8A8_UNORM_SRGB;
+	colorDesc.Width = (int)_windowExtent.width;
+	colorDesc.Height = (int)_windowExtent.height;
+	colorDesc.MipLevels = 1;
+	colorDesc.SampleCount = 1;
+	colorDesc.MiscFlags = ovrTextureMisc_DX_Typeless;
+	colorDesc.BindFlags = ovrTextureBind_DX_RenderTarget;
+	colorDesc.StaticImage = ovrFalse;
+	CHECKOVR(ovr_CreateTextureSwapChainVk(_session, _device, &colorDesc, &textureChain));
+
+	_mainDeletionQueue.push_function([=]() {
+		ovr_DestroyTextureSwapChain(_session, textureChain);
+		textureChain = nullptr;
+		ovr_DestroyTextureSwapChain(_session, depthChain);
+		depthChain = nullptr;
+		});
+
+	int textureCount = 0;
+	CHECKOVR(ovr_GetTextureSwapChainLength(_session, textureChain, &textureCount));
+
+	int depthCount = 0;
+	CHECKOVR(ovr_GetTextureSwapChainLength(_session, textureChain, &depthCount));
+
+	//CHECK(textureCount == depthCount);
+
+	
+	for (int i = 0; i < textureCount; ++i)
+	{
+		VkImage colorImage;
+		CHECKOVR(ovr_GetTextureSwapChainBufferVk(_session, textureChain, i, &colorImage));
+
+		VkImage depthImage;
+		CHECKOVR(ovr_GetTextureSwapChainBufferVk(_session, depthChain, i, &depthImage));
+
+		_oculusSwapchainImages.push_back(colorImage);
+		_oculusDepthSwapchainImages.push_back(depthImage);
+
+		
+	}
+}
+
+
+void VulkanEngine::init_oculus_commands()
+{
+	//create a command pool for commands submitted to the graphics queue.
+	//we also want the pool to allow for resetting of individual command buffers
+	VkCommandPoolCreateInfo commandPoolInfo = vkinit::command_pool_create_info(_graphicsQueueFamily, VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT);
+
+	for (int i = 0; i < FRAME_OVERLAP; i++) {
+
+
+		VK_CHECK(vkCreateCommandPool(_device, &commandPoolInfo, nullptr, &_oculusFrames[i]._commandPool));
+
+		//allocate the default command buffer that we will use for rendering
+		VkCommandBufferAllocateInfo cmdAllocInfo = vkinit::command_buffer_allocate_info(_oculusFrames[i]._commandPool, 1);
+
+		VK_CHECK(vkAllocateCommandBuffers(_device, &cmdAllocInfo, &_oculusFrames[i]._mainCommandBuffer));
+
+		_mainDeletionQueue.push_function([=]() {
+			vkDestroyCommandPool(_device, _oculusFrames[i]._commandPool, nullptr);
+			});
+	}
+}
+
+
+
+
 
 void VulkanEngine::init()
 {
+
 	// We initialize SDL and create a window with it. 
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -186,37 +327,47 @@ void VulkanEngine::init_swapchain()
 		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
 		});
 
-	//depth image size will match the window
-	VkExtent3D depthImageExtent = {
-		_windowExtent.width,
-		_windowExtent.height,
-		1
-	};
+	
+	int numImages = vkbSwapchain.image_count;
+	//_swapchainDepthImages.reserve(numImages);
+	//_swapchainDepthImageViews.reserve(numImages);
+	for (int i = 0; i < numImages; i++) {
+		_swapchainDepthImages.push_back(AllocatedImage());
+		_swapchainDepthImageViews.push_back(VkImageView());
+		//depth image size will match the window
+		VkExtent3D depthImageExtent = {
+			_windowExtent.width,
+			_windowExtent.height,
+			1
+		};
 
-	//hardcoding the depth format to 32 bit float
-	_depthFormat = VK_FORMAT_D32_SFLOAT;
+		//hardcoding the depth format to 32 bit float
+		_depthFormat = VK_FORMAT_D32_SFLOAT;
 
-	//the depth image will be an image with the format we selected and Depth Attachment usage flag
-	VkImageCreateInfo dimg_info = vkinit::image_create_info(_depthFormat, VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, depthImageExtent);
+		//the depth image will be an image with the format we selected and Depth Attachment usage flag
+		VkImageCreateInfo dimg_info = vkinit::image_create_info(_depthFormat, VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT, depthImageExtent);
 
-	//for the depth image, we want to allocate it from GPU local memory
-	VmaAllocationCreateInfo dimg_allocinfo = {};
-	dimg_allocinfo.usage = VMA_MEMORY_USAGE_GPU_ONLY;
-	dimg_allocinfo.requiredFlags = VkMemoryPropertyFlags(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+		//for the depth image, we want to allocate it from GPU local memory
+		VmaAllocationCreateInfo dimg_allocinfo = {};
+		dimg_allocinfo.usage = VMA_MEMORY_USAGE_GPU_ONLY;
+		dimg_allocinfo.requiredFlags = VkMemoryPropertyFlags(VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-	//allocate and create the image
-	vmaCreateImage(_allocator, &dimg_info, &dimg_allocinfo, &_depthImage._image, &_depthImage._allocation, nullptr);
+		//allocate and create the image
+		vmaCreateImage(_allocator, &dimg_info, &dimg_allocinfo, &_swapchainDepthImages[i]._image, &_swapchainDepthImages[i]._allocation, nullptr);
 
-	//build an image-view for the depth image to use for rendering
-	VkImageViewCreateInfo dview_info = vkinit::imageview_create_info(_depthFormat, _depthImage._image, VK_IMAGE_ASPECT_DEPTH_BIT);
+		//build an image-view for the depth image to use for rendering
+		VkImageViewCreateInfo dview_info = vkinit::imageview_create_info(_depthFormat, _swapchainDepthImages[i]._image, VK_IMAGE_ASPECT_DEPTH_BIT);
 
-	VK_CHECK(vkCreateImageView(_device, &dview_info, nullptr, &_depthImageView));
+		VK_CHECK(vkCreateImageView(_device, &dview_info, nullptr, &_swapchainDepthImageViews[i]));
 
-	//add to deletion queues
-	_mainDeletionQueue.push_function([=]() {
-		vkDestroyImageView(_device, _depthImageView, nullptr);
-		vmaDestroyImage(_allocator, _depthImage._image, _depthImage._allocation);
-		});
+		//add to deletion queues
+		_mainDeletionQueue.push_function([=]() {
+			vkDestroyImageView(_device, _swapchainDepthImageViews[i], nullptr);
+			vmaDestroyImage(_allocator, _swapchainDepthImages[i]._image, _swapchainDepthImages[i]._allocation);
+			});
+	}
+
+	
 
 
 }
@@ -386,7 +537,7 @@ void VulkanEngine::init_framebuffers()
 
 		VkImageView attachments[2];
 		attachments[0] = _swapchainImageViews[i];
-		attachments[1] = _depthImageView;
+		attachments[1] = _swapchainDepthImageViews[i];
 
 		fb_info.pAttachments = attachments;
 		fb_info.attachmentCount = 2;
