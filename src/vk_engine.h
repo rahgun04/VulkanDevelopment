@@ -14,10 +14,7 @@
 #include <unordered_map>
 #include <map>
 
-#include "OVR_CAPI.h"
-#include "OVR_ErrorCode.h"
-#include "OVR_Version.h"
-#include "Extras/OVR_Math.h"
+
 
 //
 // OpenXR Headers
@@ -102,13 +99,6 @@ struct xrFrameData {
 };
 
 
-struct OculusFrameData {
-
-	VkCommandPool _commandPool;
-	VkCommandBuffer _mainCommandBuffer;
-};
-
-
 
 struct RenderTexture {
 	VkImage depthImg;
@@ -118,34 +108,6 @@ struct RenderTexture {
 	VkFramebuffer fb;
 
 };
-
-
-
-
-class TextureSwapChain {
-public:
-	VkExtent2D size;
-	ovrTextureSwapChain colSwapChain;
-	ovrTextureSwapChain depthSwapChain;
-	std::vector<RenderTexture> rendTex;
-	OVR::Recti GetViewport();
-	void init(VkExtent2D sizeIn);
-
-};
-
-class RenderTarget {
-public:
-	VkExtent2D size; //for ovrSizei
-	VkRenderPass rp;
-
-	VkPipeline pipeline;
-	TextureSwapChain tex;
-	RenderTarget(ovrSizei size);
-	RenderTarget();
-};
-
-
-
 
 
 struct xrRenderTarget {
@@ -188,10 +150,7 @@ public:
 
 
 	VulkanEngine();
-	void init_oculus();
-	void create_oculus_renderTarget();
-	void oculus_cleanup();
-	void oculus_run();
+
 	glm::mat4 cameraRotationTransform{ 0 };
 	glm::vec3 _tgtPos{ 0.f,-2.f,-5.f };
 	glm::vec3 _camPos{ 0.f, 0.f,-1.f };
@@ -331,29 +290,6 @@ private:
 
 	void xrPollEvents();
 	void xrHandleStateChange(const XrEventDataSessionStateChanged& stateChangedEvent);
-
-
-	RenderTarget eyes[2];
-	ovrSession                  _session;
-	ovrGraphicsLuid             _luid;
-	ovrTextureSwapChain depthChain;
-	ovrTextureSwapChain textureChain;
-	ovrHmdDesc hmdDesc;
-	
-
-
-	OculusFrameData oculus_frames[FRAME_OVERLAP];
-	OculusFrameData& get_current_oculus_frame();
-
-	void create_oculus_swapchain(RenderTarget* rt);
-	void init_oculus_commands(RenderTarget* rt);
-	void init_oculus_default_renderpass(RenderTarget* rt);
-	void init_oculus_frameBuffer(RenderTarget* rt);
-	void init_oculus_pipelines(RenderTarget* rt);
-	void oculus_load_meshes();
-	void init_oculus_scene();
-	void oculus_draw();
-
 };
 
 
