@@ -11,6 +11,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	/*
 	VulkanEngine engine;
 
 	engine.init();
@@ -20,4 +21,17 @@ int main(int argc, char* argv[])
 	engine.cleanup();
 
 	return 0;
+	*/
+	
+	VulkanEngine engine;
+
+	engine.openXR_init();
+
+	engine.xrRun();
+
+	engine.xrCleanup();
+
+	return 0;
+	
+	
 }

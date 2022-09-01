@@ -8,12 +8,27 @@
 #include "vk_mem_alloc.h"
 #include <vk_mesh.h>
 #include <glm/glm.hpp>
+#include <glm/gtx/quaternion.hpp>
 #include <iostream>
 #include <chrono>
 #include <unordered_map>
+#include <map>
+
 #include "OVR_CAPI.h"
 #include "OVR_ErrorCode.h"
 #include "OVR_Version.h"
+#include "Extras/OVR_Math.h"
+
+//
+// OpenXR Headers
+//
+
+#define XR_USE_GRAPHICS_API_VULKAN
+#include <openxr/openxr.h>
+#include <openxr/openxr_platform.h>
+#include <openxr/openxr_reflection.h>
+
+
 
 using namespace std::chrono;
 //number of frames to overlap when rendering
@@ -76,16 +91,114 @@ struct DeletionQueue
 struct FrameData {
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
+	VkCommandPool _commandPool;
+	VkCommandBuffer _mainCommandBuffer;
+};
+
+struct xrFrameData {
+	VkFence _renderFence;
+	VkCommandPool _commandPool;
+	VkCommandBuffer _mainCommandBuffer;
+};
+
+
+struct OculusFrameData {
 
 	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
 };
 
+
+
+struct RenderTexture {
+	VkImage depthImg;
+	VkImage colImg;
+	VkImageView depthView;
+	VkImageView colView;
+	VkFramebuffer fb;
+
+};
+
+
+
+
+class TextureSwapChain {
+public:
+	VkExtent2D size;
+	ovrTextureSwapChain colSwapChain;
+	ovrTextureSwapChain depthSwapChain;
+	std::vector<RenderTexture> rendTex;
+	OVR::Recti GetViewport();
+	void init(VkExtent2D sizeIn);
+
+};
+
+class RenderTarget {
+public:
+	VkExtent2D size; //for ovrSizei
+	VkRenderPass rp;
+
+	VkPipeline pipeline;
+	TextureSwapChain tex;
+	RenderTarget(ovrSizei size);
+	RenderTarget();
+};
+
+
+
+
+
+struct xrRenderTarget {
+	uint32_t width;
+	uint32_t height;
+	VkImage xrDepthImage;
+	VkImageView xrDepthView;
+	VmaAllocation xrDepthAllocation;
+	std::vector<VkImage> xrImages;
+	std::vector<VkImageView> xrImageViews;
+	VkRenderPass renderPass;
+	std::vector<VkFramebuffer> framebuffers;
+
+};
+
+
+
+
 class VulkanEngine {
 public:
+	XrInstance _xrInstance;
+	XrSystemId _xrSystemId;
+	XrSpace _xrSpace;
+	XrGraphicsBindingVulkan2KHR _xrGraphicsBinding{ XR_TYPE_GRAPHICS_BINDING_VULKAN2_KHR };
+	XrSession _xrSession;
+	std::vector<XrSpace> _xrVisualizedSpaces;
+	std::vector<XrViewConfigurationView> _xrConfigViews;
+	std::vector<XrView> _xrViews;
+
+	std::vector<XrSwapchain> _xrSwapchains;
+	std::vector<xrRenderTarget> _xrRenderTargets;
+	XrFovf _xrFovDetails;
+	XrEventDataBuffer _xrEventDataBuffer;
+	XrSessionState _xrSessionState{XR_SESSION_STATE_UNKNOWN};
+	bool _xrSessionRunning{false};
+
+	bool bQuit{ false };
+
+
+
+
+	VulkanEngine();
+	void init_oculus();
+	void create_oculus_renderTarget();
+	void oculus_cleanup();
+	void oculus_run();
 	glm::mat4 cameraRotationTransform{ 0 };
-	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
-	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
+	glm::vec3 _tgtPos{ 0.f,-2.f,-5.f };
+	glm::vec3 _camPos{ 0.f, 0.f,-1.f };
+	glm::vec3 _vrPos{ 0.f, 0.f, 0.f };
+	glm::quat _vrRot;
+
+	XrCompositionLayerProjectionView _xrProjView;
 
 	float pitch{ 0 };
 	float yaw{ 0 };
@@ -99,9 +212,6 @@ public:
 	int _frameNumber{ 0 };
 	int _selectedShader{ 0 };
 
-
-	
-
 	//the format for the depth image
 	VkFormat _depthFormat;
 
@@ -110,8 +220,6 @@ public:
 	VkPhysicalDevice _chosenGPU; // GPU chosen as the default device
 	VkDevice _device; // Vulkan device for commands
 	VkSurfaceKHR _surface; // Vulkan window surface
-
-
 
 	VkSwapchainKHR _swapchain; // from other articles
 
@@ -129,22 +237,16 @@ public:
 	VkQueue _graphicsQueue; //queue we will submit to
 	uint32_t _graphicsQueueFamily; //family of that queue
 
-
-
-
 	VkRenderPass _renderPass;
 
 	std::vector<VkFramebuffer> _framebuffers;
-
-
-
 
 
 	VkPipelineLayout _meshPipelineLayout;
 	VkPipeline _meshPipeline;
 	Mesh _triangleMesh;
 
-	VkExtent2D _windowExtent{ 1700 , 900 };
+	VkExtent2D _windowExtent{ 1700 , 1700 };
 
 	struct SDL_Window* _window{ nullptr };
 
@@ -152,15 +254,22 @@ public:
 
 	//initializes everything in the engine
 	void init();
+	void openXR_init();
 
 	//shuts down the engine
 	void cleanup();
+	void xrCleanup();
 
 	//draw loop
 	void draw();
+	void xrDraw();
+	bool xrRenderLayer(XrTime predictedDisplayTime, std::vector<XrCompositionLayerProjectionView>& projectionLayerViews,
+		XrCompositionLayerProjection& layer);
+	void xrRenderView(const XrCompositionLayerProjectionView& layerView, int viewNumber, int imageIndex);
 
 	//run main loop
 	void run();
+	void xrRun();
 
 	FrameData& get_current_frame();
 
@@ -192,15 +301,24 @@ public:
 private:
 
 	void init_vulkan();
+	void init_xrVulkan();
 
 	void init_swapchain();
+	void init_xrSwapchain();
+
 	void init_commands();
+
+	void init_default_xrRenderpass();
 	void init_default_renderpass();
 
 	void init_framebuffers();
+	void init_xrFramebuffers();
+
 	void init_sync_structures();
 
 	void init_pipelines();
+	void init_xrPipelines();
+	
 
 	bool load_shader_module(const char* filePath, VkShaderModule* outShaderModule);
 	
@@ -209,33 +327,32 @@ private:
 
 	void upload_mesh(Mesh& mesh);
 
-	void VulkanEngine::init_scene();
+	void init_scene();
+
+	void xrPollEvents();
+	void xrHandleStateChange(const XrEventDataSessionStateChanged& stateChangedEvent);
 
 
-
-
-	//Oculus Specific
-	VrApi vrApi;
-
+	RenderTarget eyes[2];
 	ovrSession                  _session;
 	ovrGraphicsLuid             _luid;
-
-	ovrTextureSwapChain         textureChain;
-	ovrTextureSwapChain         depthChain;
-
-	//array of images from the swapchain
-	std::vector<VkImage> _oculusDepthSwapchainImages;
-	std::vector<VkImage> _oculusSwapchainImages;
-
-	void init_oculus();
-	void create_oculus_swapchain();
-	void init_oculus_commands();
-	void init_oculus_frameBuffer();
-	FrameData _oculusFrames[FRAME_OVERLAP];
-	FrameData& get_current_oculus_frame();
-	std::vector<VkFramebuffer> _oculusFramebuffers;
+	ovrTextureSwapChain depthChain;
+	ovrTextureSwapChain textureChain;
+	ovrHmdDesc hmdDesc;
+	
 
 
+	OculusFrameData oculus_frames[FRAME_OVERLAP];
+	OculusFrameData& get_current_oculus_frame();
+
+	void create_oculus_swapchain(RenderTarget* rt);
+	void init_oculus_commands(RenderTarget* rt);
+	void init_oculus_default_renderpass(RenderTarget* rt);
+	void init_oculus_frameBuffer(RenderTarget* rt);
+	void init_oculus_pipelines(RenderTarget* rt);
+	void oculus_load_meshes();
+	void init_oculus_scene();
+	void oculus_draw();
 
 };
 

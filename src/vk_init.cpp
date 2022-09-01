@@ -193,6 +193,26 @@ VkImageViewCreateInfo vkinit::imageview_create_info(VkFormat format, VkImage ima
 	return info;
 }
 
+VkImageViewCreateInfo vkinit::xr_imageview_create_info(VkFormat format, VkImage image, VkImageAspectFlags aspectFlags)
+{
+	VkImageViewCreateInfo colorViewInfo{ VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO };
+	colorViewInfo.image = image;
+	colorViewInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+	colorViewInfo.format = format;
+	colorViewInfo.components.r = VK_COMPONENT_SWIZZLE_R;
+	colorViewInfo.components.g = VK_COMPONENT_SWIZZLE_G;
+	colorViewInfo.components.b = VK_COMPONENT_SWIZZLE_B;
+	colorViewInfo.components.a = VK_COMPONENT_SWIZZLE_A;
+	colorViewInfo.subresourceRange.aspectMask = aspectFlags;
+	colorViewInfo.subresourceRange.baseMipLevel = 0;
+	colorViewInfo.subresourceRange.levelCount = 1;
+	colorViewInfo.subresourceRange.baseArrayLayer = 0;
+	colorViewInfo.subresourceRange.layerCount = 1;
+
+	return colorViewInfo;
+}
+
+
 VkPipelineDepthStencilStateCreateInfo vkinit::depth_stencil_create_info(bool bDepthTest, bool bDepthWrite, VkCompareOp compareOp)
 {
 	VkPipelineDepthStencilStateCreateInfo info = {};

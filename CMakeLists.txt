@@ -5,6 +5,11 @@ cmake_minimum_required (VERSION 3.18)
 
 project ("VulkanDevelopment")
 
+    # option 1: put the following command before the creation of the first
+    #           compiled target you want to apply the option to;
+    #           this applies to targets created in this dir and subdirectories
+#add_link_option($<$<CONFIG:Debug>:/INCREMENTAL>)
+#add_compile_option($<$<CONFIG:Debug>:/ZI>)
 
 
 #option(VK_BOOTSTRAP_VULKAN_HEADER_DIR "HELP: vulkan Path" D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
@@ -18,7 +23,7 @@ add_subdirectory(vk-bootstrap)
 add_subdirectory("tinyobjloader")
 add_subdirectory(glm)
 add_subdirectory(ovr_sdk_win_32.0.0)
-
+add_subdirectory(spdlog)
 
 
 
