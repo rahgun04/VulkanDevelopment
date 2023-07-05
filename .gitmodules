@@ -7,3 +7,12 @@
 [submodule "tinyobjloader"]
 	path = tinyobjloader
 	url = https://github.com/tinyobjloader/tinyobjloader.git
+[submodule "entt"]
+	path = entt
+	url = https://github.com/skypjack/entt.git
+[submodule "stb"]
+	path = stb
+	url = https://github.com/nothings/stb.git
+[submodule "thirdParty/stb"]
+	path = thirdParty/stb
+	url = https://github.com/nothings/stb.git
