@@ -1,0 +1,514 @@
+# Blender MTL File: 'Volvo S90.blend'
+# Material Count: 46
+
+newmtl Black_Glass
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Black_Glossy
+Ns 843.638431
+Ka 1.000000 1.000000 1.000000
+Kd 0.005479 0.005479 0.005479
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Car_Paint
+Ns 429.619794
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl CenterConsole
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\CenterConsole\\CenterConsole_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\CenterConsole\\CenterConsole_Base_Color Black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\CenterConsole\\CenterConsole_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\CenterConsole\\CenterConsole_Metallic.png
+
+newmtl Chrome
+Ns 835.735539
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl Dashboard
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Dashboard\\Dashboard_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Dashboard\\Dashboard_Base_Color BlackBlue.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Dashboard\\Dashboard_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Dashboard\\Dashboard_Metallic.png
+
+newmtl DoorPanelFront
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Front\\DoorPanelFront_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Front\\DoorPanelFront_Base_Color Black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Front\\DoorPanelFront_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Front\\DoorPanelFront_Metallic.png
+
+newmtl DoorPanelRear
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Rear\\DoorPanelRear_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Rear\\DoorPanelRear_Base_Color Black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Rear\\DoorPanelRear_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\DoorPanels\\Rear\\DoorPanelRear_Metallic.png
+
+newmtl Front_Seat
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Front\\Front_Seat_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Front\\Front_Seat_Base_Color black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Front\\Front_Seat_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Front\\Front_Seat_Metallic.png
+
+newmtl Glass
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl GlassRunninglight
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Headlight\\GlassRunninglight_Normal_OpenGL.png
+
+newmtl Glass_Taillight
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Glass_headlights
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Glass_wavey
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Headlight_Insides
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Headlight\\Headlight Insides_Normal_OpenGL.jpg
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Headlight\\Headlight Insides_Roughness.jpg
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Headlight\\Headlight Insides_Metallic.jpg
+
+newmtl Material
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.486898 0.486898 0.486898
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.001
+Ns 81.000006
+Ka 1.000000 1.000000 1.000000
+Kd 0.486898 0.486898 0.486898
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Metal_Black_Rough
+Ns 512.404953
+Ka 1.000000 1.000000 1.000000
+Kd 0.006069 0.006069 0.006069
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl Metal_Rough
+Ns 476.033086
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl Metal_Rough.001
+Ns 476.033086
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl Metal_Turnsignal
+Ns 671.281032
+Ka 1.000000 1.000000 1.000000
+Kd 0.445786 0.445786 0.445786
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl Plastic
+Ns 237.440071
+Ka 1.000000 1.000000 1.000000
+Kd 0.010302 0.010302 0.010302
+Ks 0.213636 0.213636 0.213636
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Plastic.001
+Ns 237.440071
+Ka 1.000000 1.000000 1.000000
+Kd 0.010302 0.010302 0.010302
+Ks 0.213636 0.213636 0.213636
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Rear_Seats
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Rear\\Rear Seats_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Rear\\Rear Seats_Base_Color Black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Rear\\Rear Seats_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Seats\\Rear\\Rear Seats_Metallic.png
+
+newmtl Rims.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Rims\\Rims_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Rims\\Rims_Base_Color.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Rims\\Rims_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Rims\\Rims_Metallic.png
+
+newmtl Shell
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.004392 0.004392 0.004392
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Shell\\Shell_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Shell\\Shell_Base_Color Black.png
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Shell\\Shell_Roughness.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Shell\\Shell_Metallic.png
+
+newmtl Speedometer
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Other\\GaugeCluster.png.png
+map_Ke C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Other\\GaugeCluster.png.png
+
+newmtl Steeringwheel
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\SteeringWheel\\Steeringwheel_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\SteeringWheel\\Steeringwheel_Base_Color Black.png
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\SteeringWheel\\Steeringwheel_Metallic.png
+
+newmtl Taillight
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Taillight\\Taillight_Normal_OpenGL.jpg
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Taillight\\Taillight_Base_Color.jpg
+map_Ns C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Taillight\\Taillight_Roughness.jpg
+refl C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\Taillight\\Taillight_Metallic.jpg
+
+newmtl Tire.001
+Ns 452.529128
+Ka 1.000000 1.000000 1.000000
+Kd 0.043743 0.043743 0.043743
+Ks 0.522727 0.522727 0.522727
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Tires\\Tire_Normal_OpenGL.png
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Tires\\Tire_Base_Color.png
+
+newmtl Translucent_Glass
+Ns 220.927690
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Translucent_Glass.001
+Ns 220.927690
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Turn_signal(taillight)
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl caliper
+Ns 290.547515
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Brakes\\caliper_Normal_OpenGL.png
+
+newmtl chrome.001
+Ns 851.578506
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl crystal
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl disc.001
+Ns 512.404953
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Wheel\\Brakes\\BrakediscAlbedo.png
+
+newmtl emission
+Ns 576.000017
+Ka 1.000000 1.000000 1.000000
+Kd 0.082984 0.082984 0.082984
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl heaxagon_glass
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.735657 0.735657 0.735657
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Lights\\honeycomb_normalmap.png
+
+newmtl infotainmentScreen
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Other\\infotainmentscreen.jpg
+map_Ke C:\\Users\\rahul\\Downloads\\compression\\uploads_files_3413660_Volvo+S90\\Volvo S90\\textures\\Interior\\Other\\infotainmentscreen.jpg
+
+newmtl metal_rough.002
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl null
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl null.002
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+
+newmtl rubber
+Ns 458.349180
+Ka 1.000000 1.000000 1.000000
+Kd 0.004726 0.004726 0.004726
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl tailpipes
+Ns 728.999998
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl turnsignal
+Ns 900.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.451596 0.237155 0.126718
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2

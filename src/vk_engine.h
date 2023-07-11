@@ -13,13 +13,21 @@
 #include <chrono>
 #include <unordered_map>
 #include <map>
+#include <stack>
+
+#include "vk_ecs.h"
+
+//
+//EnTT
+//
+#include <entt/entt.hpp>
+
 
 
 
 //
 // OpenXR Headers
 //
-
 #define XR_USE_GRAPHICS_API_VULKAN
 #include <openxr/openxr.h>
 #include <openxr/openxr_platform.h>
@@ -27,43 +35,70 @@
 
 
 
-using namespace std::chrono;
-//number of frames to overlap when rendering
-constexpr unsigned int FRAME_OVERLAP = 2;
-
-struct VrApi {
-	// Get the required Vulkan extensions for Vulkan instance creation
-	std::function<bool(char* extensionNames, uint32_t* extensionNamesSize)> GetInstanceExtensionsVk;
-	// Get the physical device corresponding to the VR session
-	std::function<bool(VkInstance instance, VkPhysicalDevice* physicalDevice)> GetSessionPhysicalDeviceVk;
-	// Get the required Vulkan extensions for Vulkan device creation
-	std::function<bool(char* extensionNames, uint32_t* extensionNamesSize)> GetDeviceExtensionsVk;
-	// Create the vulkan instance (nullptr => call vkCreateInstance)
-	std::function<VkResult(PFN_vkGetInstanceProcAddr pfnGetInstanceProcAddr, const VkInstanceCreateInfo* pCreateInfo,
-		const VkAllocationCallbacks* pAllocator, VkInstance* pInstance)> CreateInstanceVk;
-	// Create the vulkan device (nullptr => call vkCreateDevice)
-	std::function<VkResult(PFN_vkGetInstanceProcAddr pfnGetInstanceProcAddr, VkPhysicalDevice physicalDevice,
-		const VkDeviceCreateInfo* pCreateInfo, const VkAllocationCallbacks* pAllocator, VkDevice* pDevice)> CreateDeviceVk;
-};
-
 
 struct Material {
+	VkDescriptorSet textureSet{ VK_NULL_HANDLE }; //texture defaulted to null
 	VkPipeline pipeline;
 	VkPipelineLayout pipelineLayout;
 };
 
 struct RenderObject {
 	Mesh* mesh;
-
 	Material* material;
-
-	glm::mat4 transformMatrix;
 };
 
 
+
+
+
+
+
+
+namespace Side {
+	const int LEFT = 0;
+	const int RIGHT = 1;
+	const int COUNT = 2;
+}  // namespace Side
+
+struct InputState {
+	XrActionSet actionSet{ XR_NULL_HANDLE };
+	XrAction grabAction{ XR_NULL_HANDLE };
+	XrAction poseAction{ XR_NULL_HANDLE };
+	XrAction vibrateAction{ XR_NULL_HANDLE };
+	XrAction quitAction{ XR_NULL_HANDLE };
+
+	XrAction movementXAction{ XR_NULL_HANDLE };
+	XrAction movementYAction{ XR_NULL_HANDLE };
+
+
+
+	std::array<XrPath, Side::COUNT> handSubactionPath;
+	std::array<XrSpace, Side::COUNT> handSpace;
+	std::array<float, Side::COUNT> handScale = { {1.0f, 1.0f} };
+	std::array<XrBool32, Side::COUNT> handActive;
+};
+
+
+
+using namespace std::chrono;
+//number of frames to overlap when rendering
+constexpr unsigned int FRAME_OVERLAP = 3;
+
+struct SwapChainSupportDetails {
+	VkSurfaceCapabilitiesKHR capabilities;
+	std::vector<VkSurfaceFormatKHR> formats;
+	std::vector<VkPresentModeKHR> presentModes;
+};
+
+
+
+
+
+
+
 struct MeshPushConstants {
-	glm::vec4 data;
-	glm::mat4 render_matrix;
+	glm::mat4 renderMatrix;
+
 };
 
 struct DeletionQueue
@@ -90,15 +125,31 @@ struct FrameData {
 	VkFence _renderFence;
 	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
+	//buffer that holds a single GPUCameraData to use when rendering
+	AllocatedBuffer cameraBuffer;
+
+	AllocatedBuffer objectBuffer;
+	VkDescriptorSet objectDescriptor;
+
+	VkDescriptorSet globalDescriptor;
 };
 
 struct xrFrameData {
+	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
 };
 
+struct GPUObjectData {
+	glm::mat4 modelMatrix;
+};
 
+struct GPUCameraData {
+	glm::mat4 view;
+	glm::mat4 proj;
+	glm::mat4 viewproj;
+};
 
 struct RenderTexture {
 	VkImage depthImg;
@@ -123,11 +174,39 @@ struct xrRenderTarget {
 
 };
 
+struct GPUSceneData {
+	glm::vec4 fogColor; // w is for exponent
+	glm::vec4 fogDistances; //x for min, y for max, zw unused.
+	glm::vec4 ambientColor;
+	glm::vec4 sunlightDirection; //w for sun power
+	glm::vec4 sunlightColor;
+};
+
+struct UploadContext {
+	VkFence _uploadFence;
+	VkCommandPool _commandPool;
+	VkCommandBuffer _commandBuffer;
+};
+
+struct Texture {
+	AllocatedImage image;
+	VkImageView imageView;
+};
 
 
 
 class VulkanEngine {
 public:
+
+	Scene mainScene;
+	GPUSceneData _sceneParameters;
+	AllocatedBuffer _sceneParameterBuffer;
+	float deltaTime;
+	//Entity monkey;
+	
+	InputState m_input;
+	glm::vec3 thumstickPos;
+
 	XrInstance _xrInstance;
 	XrSystemId _xrSystemId;
 	XrSpace _xrSpace;
@@ -146,8 +225,11 @@ public:
 
 	bool bQuit{ false };
 
+	XrTime _predictedDisplayTime;
 
+	UploadContext _uploadContext;
 
+	void immediate_submit(std::function<void(VkCommandBuffer cmd)>&& function);
 
 	VulkanEngine();
 
@@ -171,6 +253,8 @@ public:
 	int _frameNumber{ 0 };
 	int _selectedShader{ 0 };
 
+
+	VkPhysicalDeviceProperties _gpuProperties;
 	//the format for the depth image
 	VkFormat _depthFormat;
 
@@ -182,6 +266,11 @@ public:
 
 	VkSwapchainKHR _swapchain; // from other articles
 
+	VkDescriptorSetLayout _globalSetLayout;
+	VkDescriptorSetLayout _objectSetLayout;
+	VkDescriptorSetLayout _singleTextureSetLayout;
+	VkDescriptorPool _descriptorPool;
+
 // image format expected by the windowing system
 	VkFormat _swapchainImageFormat;
 
@@ -192,16 +281,24 @@ public:
 	std::vector<VkImageView> _swapchainImageViews;
 	std::vector<VkImageView> _swapchainDepthImageViews;
 
+	VkSwapchainKHR _mirrorSwapchain;
+	//array of images for the mirror swapchain
+	std::vector<VkImage> _mirrorSwapchainImages;
+	std::vector<VkImageView> _mirrorSwapchainImageViews;
+	VkFormat _mirrorSwapchainImageFormat;
 
 	VkQueue _graphicsQueue; //queue we will submit to
 	uint32_t _graphicsQueueFamily; //family of that queue
+
+
+
 
 	VkRenderPass _renderPass;
 
 	std::vector<VkFramebuffer> _framebuffers;
 
 
-	VkPipelineLayout _meshPipelineLayout;
+	VkPipelineLayout _meshPipelineLayout, _texturedPipeLayout;
 	VkPipeline _meshPipeline;
 	Mesh _triangleMesh;
 
@@ -230,6 +327,10 @@ public:
 	void run();
 	void xrRun();
 
+
+	void load_images();
+
+
 	FrameData& get_current_frame();
 
 	FrameData _frames[FRAME_OVERLAP];
@@ -239,7 +340,8 @@ public:
 
 	std::unordered_map<std::string, Material> _materials;
 	std::unordered_map<std::string, Mesh> _meshes;
-	//functions
+	
+	std::unordered_map<std::string, Texture> _loadedTextures;
 
 	//create material and add it to the map
 	Material* create_material(VkPipeline pipeline, VkPipelineLayout layout, const std::string& name);
@@ -252,18 +354,22 @@ public:
 
 	//our draw function
 	void draw_objects(VkCommandBuffer cmd, RenderObject* first, int count);
+	void xrDraw_objects(VkCommandBuffer cmd);
 
-
-
+	AllocatedBuffer create_buffer(size_t allocSize, VkBufferUsageFlags usage, VmaMemoryUsage memoryUsage);
 
 
 private:
 
 	void init_vulkan();
 	void init_xrVulkan();
+	void init_descriptors();
+	
+
 
 	void init_swapchain();
 	void init_xrSwapchain();
+	void init_mirSwapchain();
 
 	void init_commands();
 
@@ -288,8 +394,14 @@ private:
 
 	void init_scene();
 
+	void xrInitialiseActions();
 	void xrPollEvents();
+	void xrPollActions();
 	void xrHandleStateChange(const XrEventDataSessionStateChanged& stateChangedEvent);
+
+	
+	size_t pad_uniform_buffer_size(size_t originalSize);
+
 };
 
 

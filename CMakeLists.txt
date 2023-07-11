@@ -24,7 +24,8 @@ add_subdirectory("tinyobjloader")
 add_subdirectory(glm)
 add_subdirectory(ovr_sdk_win_32.0.0)
 add_subdirectory(spdlog)
-
+add_subdirectory(entt)
+add_subdirectory(TestingTargets)
 
 
 

@@ -10,7 +10,6 @@ add_executable(VulkanDevelopment ${Sources})
 
 
 
-
 if (MSVC AND WIN32 AND NOT MSVC_VERSION VERSION_LESS 142)
 
 
