@@ -474,6 +474,15 @@ tinyobjloader_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 tinyobjloader_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/tinyobjloader
 
+//Value Computed by CMake
+vulk_BINARY_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/VulkanDevelopment
+
+//Value Computed by CMake
+vulk_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+vulk_SOURCE_DIR:STATIC=D:/Users/rahul/Source/repos/VulkanDevelopment/VulkanDevelopment
+
 
 ########################
 # INTERNAL cache entries

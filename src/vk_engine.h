@@ -97,7 +97,8 @@ struct SwapChainSupportDetails {
 
 
 struct MeshPushConstants {
-	glm::mat4 renderMatrix;
+	glm::vec4 data;
+	glm::mat4 cameraVP;
 
 };
 
@@ -235,7 +236,7 @@ public:
 
 	glm::mat4 cameraRotationTransform{ 0 };
 	glm::vec3 _tgtPos{ 0.f,-2.f,-5.f };
-	glm::vec3 _camPos{ 0.f, 0.f,-1.f };
+	glm::vec3 _camPos{ 0.f, 0.f,-2.f };
 	glm::vec3 _vrPos{ 0.f, 0.f, 0.f };
 	glm::quat _vrRot;
 
@@ -321,7 +322,7 @@ public:
 	void xrDraw();
 	bool xrRenderLayer(XrTime predictedDisplayTime, std::vector<XrCompositionLayerProjectionView>& projectionLayerViews,
 		XrCompositionLayerProjection& layer);
-	void xrRenderView(const XrCompositionLayerProjectionView& layerView, int viewNumber, int imageIndex);
+	void xrRenderView(VkCommandBuffer cmd, const XrCompositionLayerProjectionView& layerView, int viewNumber, int imageIndex, int mirrSwapchainImageIndex);
 
 	//run main loop
 	void run();

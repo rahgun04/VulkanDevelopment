@@ -27,13 +27,13 @@ layout(std140,set = 1, binding = 0) readonly buffer ObjectBuffer{
 layout( push_constant ) uniform constants
 {
  vec4 data;
- mat4 render_matrix;
+ mat4 cameraVP;
 } PushConstants;
 
 void main()
 {
 	mat4 modelMatrix = objectBuffer.objects[gl_BaseInstance].model;
-	mat4 transformMatrix = (cameraData.viewproj * modelMatrix);
+	mat4 transformMatrix = (PushConstants.cameraVP * modelMatrix);
 	gl_Position = transformMatrix * vec4(vPosition, 1.0f);
 	texCoord = vTexCoord; 
 	outColor = vColor;

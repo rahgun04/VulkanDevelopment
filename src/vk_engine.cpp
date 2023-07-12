@@ -755,6 +755,7 @@ void VulkanEngine::init_xrVulkan()
 	layers.push_back("VK_LAYER_KHRONOS_validation");
 	std::vector<const char*> extensions;
 	extensions.push_back("VK_EXT_debug_report");
+
 	//extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 	//if (!checkDeviceExtensionSupport(_chosenGPU, extensions)) {
 	//	throw std::runtime_error("extention unavailable");
@@ -828,13 +829,18 @@ void VulkanEngine::init_xrVulkan()
 	}
 
 	std::vector<const char*> deviceExtensions;
+	deviceExtensions.push_back(VK_KHR_MULTIVIEW_EXTENSION_NAME);
+	VkPhysicalDeviceMultiviewFeaturesKHR physicalDeviceMultiviewFeatures{};
+	physicalDeviceMultiviewFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR;
+	physicalDeviceMultiviewFeatures.multiview = VK_TRUE;
+	physicalDeviceMultiviewFeatures.pNext = nullptr;
 
 	VkPhysicalDeviceFeatures features{};
 	// features.samplerAnisotropy = VK_TRUE;
 
 	VkPhysicalDeviceShaderDrawParametersFeatures shader_draw_parameters_features = {};
 	shader_draw_parameters_features.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES;
-	shader_draw_parameters_features.pNext = nullptr;
+	shader_draw_parameters_features.pNext = &physicalDeviceMultiviewFeatures;
 	shader_draw_parameters_features.shaderDrawParameters = VK_TRUE;
 
 
@@ -1974,6 +1980,24 @@ bool VulkanEngine::xrRenderLayer(XrTime predictedDisplayTime, std::vector<XrComp
 	CHECK(viewCountOutput == viewCapacityInput);
 	projectionLayerViews.resize(viewCountOutput);
 
+	
+	//wait until the GPU has finished rendering the last frame. Timeout of 1 second
+	VK_CHECK(vkWaitForFences(_device, 1, &get_current_frame()._renderFence, true, 1000000000));
+	VK_CHECK(vkResetFences(_device, 1, &get_current_frame()._renderFence));
+	uint32_t mirrSwapchainImageIndex;
+	//request image from the mirror swapchain, one second timeout
+	VK_CHECK(vkAcquireNextImageKHR(_device, _mirrorSwapchain, 1000000000, get_current_frame()._presentSemaphore, nullptr, &mirrSwapchainImageIndex));
+	VK_CHECK(vkResetCommandBuffer(get_current_frame()._mainCommandBuffer, 0));
+	//naming it cmd for shorter writing
+	VkCommandBuffer cmd = get_current_frame()._mainCommandBuffer;
+	VkCommandBufferBeginInfo cmdBeginInfo = {};
+	cmdBeginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+	cmdBeginInfo.pNext = nullptr;
+
+	cmdBeginInfo.pInheritanceInfo = nullptr;
+	cmdBeginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+	VK_CHECK(vkBeginCommandBuffer(cmd, &cmdBeginInfo));
+
 	for (uint32_t i = 0; i < viewCountOutput; i++) {
 		XrSwapchainImageAcquireInfo acquireInfo{ XR_TYPE_SWAPCHAIN_IMAGE_ACQUIRE_INFO };
 		uint32_t swapchainImageIndex;
@@ -1987,7 +2011,45 @@ bool VulkanEngine::xrRenderLayer(XrTime predictedDisplayTime, std::vector<XrComp
 		projectionLayerViews[i].subImage.swapchain = _xrSwapchains[i];
 		projectionLayerViews[i].subImage.imageRect.offset = { 0, 0 };
 		projectionLayerViews[i].subImage.imageRect.extent = { (int)_xrRenderTargets[i].width, (int)_xrRenderTargets[i].height };
-		xrRenderView(projectionLayerViews[i], i, swapchainImageIndex);
+		CHECK(projectionLayerViews[i].subImage.imageArrayIndex == 0);
+		xrRenderView(cmd, projectionLayerViews[i], i, swapchainImageIndex, mirrSwapchainImageIndex);
+		
+	}
+	VK_CHECK(vkEndCommandBuffer(cmd));
+
+	VkSubmitInfo submit = {};
+	submit.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+	submit.pNext = nullptr;
+	VkPipelineStageFlags waitStage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	submit.pWaitDstStageMask = &waitStage;
+	submit.waitSemaphoreCount = 1;
+	submit.pWaitSemaphores = &get_current_frame()._presentSemaphore;
+	submit.signalSemaphoreCount = 1;
+	submit.pSignalSemaphores = &get_current_frame()._renderSemaphore;
+	submit.commandBufferCount = 1;
+	submit.pCommandBuffers = &cmd;
+
+	//submit command buffer to the queue and execute it.
+	// _renderFence will now block until the graphic commands finish execution
+	VK_CHECK(vkQueueSubmit(_graphicsQueue, 1, &submit, get_current_frame()._renderFence));
+
+
+	VkPresentInfoKHR presentInfo = {};
+	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+	presentInfo.pNext = nullptr;
+
+	presentInfo.pSwapchains = &_mirrorSwapchain;
+	presentInfo.swapchainCount = 1;
+
+	presentInfo.pWaitSemaphores = &get_current_frame()._renderSemaphore;
+	presentInfo.waitSemaphoreCount = 1;
+
+	presentInfo.pImageIndices = &mirrSwapchainImageIndex;
+
+	VK_CHECK(vkQueuePresentKHR(_graphicsQueue, &presentInfo));
+	
+
+	for (uint32_t i = 0; i < viewCountOutput; i++) {
 		XrSwapchainImageReleaseInfo releaseInfo{ XR_TYPE_SWAPCHAIN_IMAGE_RELEASE_INFO };
 		CHECK_XRCMD(xrReleaseSwapchainImage(_xrSwapchains[i], &releaseInfo));
 	}
@@ -1999,32 +2061,8 @@ bool VulkanEngine::xrRenderLayer(XrTime predictedDisplayTime, std::vector<XrComp
 
 }
 
-void VulkanEngine::xrRenderView(const XrCompositionLayerProjectionView& layerView, int viewNumber, int imageIndex) {
-	CHECK(layerView.subImage.imageArrayIndex == 0);
-	//wait until the GPU has finished rendering the last frame. Timeout of 1 second
-	VK_CHECK(vkWaitForFences(_device, 1, &get_current_frame()._renderFence, true, 1000000000));
-	VK_CHECK(vkResetFences(_device, 1, &get_current_frame()._renderFence));
-
-
-	uint32_t mirrSwapchainImageIndex;
-	if (viewNumber == 0) {
-		//request image from the mirror swapchain, one second timeout
-		VK_CHECK(vkAcquireNextImageKHR(_device, _mirrorSwapchain, 1000000000, get_current_frame()._presentSemaphore, nullptr, &mirrSwapchainImageIndex));
-	}
-
-
-
-	VK_CHECK(vkResetCommandBuffer(get_current_frame()._mainCommandBuffer, 0));
-	//naming it cmd for shorter writing
-	VkCommandBuffer cmd = get_current_frame()._mainCommandBuffer;
-	VkCommandBufferBeginInfo cmdBeginInfo = {};
-	cmdBeginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-	cmdBeginInfo.pNext = nullptr;
-
-	cmdBeginInfo.pInheritanceInfo = nullptr;
-	cmdBeginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-
-	VK_CHECK(vkBeginCommandBuffer(cmd, &cmdBeginInfo));
+void VulkanEngine::xrRenderView(VkCommandBuffer cmd, const XrCompositionLayerProjectionView& layerView, int viewNumber, int imageIndex, int mirrSwapchainImageIndex) {
+	
 
 	//make a clear-color from frame number. This will flash with a 120*pi frame period.
 	VkClearValue clearValue;
@@ -2068,7 +2106,7 @@ void VulkanEngine::xrRenderView(const XrCompositionLayerProjectionView& layerVie
 	vkCmdEndRenderPass(cmd);
 
 
-	if (viewNumber == 0) {
+	if (viewNumber == 1) {
 		VkImageMemoryBarrier preCpyMemBarrier = { VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER };
 		preCpyMemBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
 		preCpyMemBarrier.srcAccessMask = VK_ACCESS_MEMORY_READ_BIT;
@@ -2198,50 +2236,8 @@ void VulkanEngine::xrRenderView(const XrCompositionLayerProjectionView& layerVie
 
 
 
-	VK_CHECK(vkEndCommandBuffer(cmd));
-
-
-	VkSubmitInfo submit = {};
-	submit.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-	submit.pNext = nullptr;
-	if (viewNumber == 0) {
-		VkPipelineStageFlags waitStage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-
-		submit.pWaitDstStageMask = &waitStage;
-
-
-		submit.waitSemaphoreCount = 1;
-		submit.pWaitSemaphores = &get_current_frame()._presentSemaphore;
-
-
-
-		submit.signalSemaphoreCount = 1;
-		submit.pSignalSemaphores = &get_current_frame()._renderSemaphore;
-	}
-
 	
-	submit.commandBufferCount = 1;
-	submit.pCommandBuffers = &cmd;
 
-	//submit command buffer to the queue and execute it.
-	// _renderFence will now block until the graphic commands finish execution
-	VK_CHECK(vkQueueSubmit(_graphicsQueue, 1, &submit, get_current_frame()._renderFence));
-
-	if (viewNumber == 0) {
-		VkPresentInfoKHR presentInfo = {};
-		presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
-		presentInfo.pNext = nullptr;
-
-		presentInfo.pSwapchains = &_mirrorSwapchain;
-		presentInfo.swapchainCount = 1;
-
-		presentInfo.pWaitSemaphores = &get_current_frame()._renderSemaphore;
-		presentInfo.waitSemaphoreCount = 1;
-
-		presentInfo.pImageIndices = &mirrSwapchainImageIndex;
-
-		VK_CHECK(vkQueuePresentKHR(_graphicsQueue, &presentInfo));
-	}
 
 
 
@@ -3187,7 +3183,9 @@ void VulkanEngine::xrDraw_objects(VkCommandBuffer cmd)
 				//texture descriptor
 				vkCmdBindDescriptorSets(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, object.material->pipelineLayout, 2, 1, &object.material->textureSet, 0, nullptr);
 			}
-
+			MeshPushConstants constants;
+			constants.cameraVP = projection * view;
+			vkCmdPushConstants(cmd, object.material->pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(MeshPushConstants), &constants);
 		}
 		
 
@@ -3210,11 +3208,7 @@ void VulkanEngine::xrDraw_objects(VkCommandBuffer cmd)
 				}
 			}
 		}
-		MeshPushConstants constants;
-		//constants.render_matrix = mesh_matrix; TODO:broken for non-vr
 
-		//upload the mesh to the GPU via push constants
-		vkCmdPushConstants(cmd, object.material->pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(MeshPushConstants), &constants);
 
 
 		//only bind the mesh if it's a different one from last bind
