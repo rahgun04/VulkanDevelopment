@@ -16,3 +16,12 @@
 [submodule "thirdParty/stb"]
 	path = thirdParty/stb
 	url = https://github.com/nothings/stb.git
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "json"]
+	path = json
+	url = https://github.com/nlohmann/json.git
+[submodule "VulkanSceneGraph"]
+	path = VulkanSceneGraph
+	url = https://github.com/vsg-dev/VulkanSceneGraph.git
