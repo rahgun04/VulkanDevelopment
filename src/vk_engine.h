@@ -14,8 +14,9 @@
 #include <unordered_map>
 #include <map>
 #include <stack>
-
+#include "imgui.h"
 #include "vk_ecs.h"
+#include "vk_descriptors.h"
 
 //
 //EnTT
@@ -42,9 +43,17 @@ struct Material {
 	VkPipelineLayout pipelineLayout;
 };
 
+
+enum RenderType {
+	RENDER_TYPE_NORMAL,
+	RENDER_TYPE_ANIM,
+};
+
 struct RenderObject {
 	Mesh* mesh;
 	Material* material;
+	AnimatedMesh* animMesh;
+	RenderType renderType {RENDER_TYPE_NORMAL};
 };
 
 
@@ -69,6 +78,7 @@ struct InputState {
 
 	XrAction movementXAction{ XR_NULL_HANDLE };
 	XrAction movementYAction{ XR_NULL_HANDLE };
+	
 
 
 
@@ -99,8 +109,16 @@ struct SwapChainSupportDetails {
 struct MeshPushConstants {
 	glm::vec4 data;
 	glm::mat4 cameraVP;
+	glm::mat4 lightSpaceMatrix;
 
 };
+
+struct ShadowPushConstants {
+	glm::vec4 data;
+	glm::mat4 cameraVP;
+
+};
+
 
 struct DeletionQueue
 {
@@ -126,6 +144,7 @@ struct FrameData {
 	VkFence _renderFence;
 	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
+	VkCommandBuffer shadowCommandBuffer;
 	//buffer that holds a single GPUCameraData to use when rendering
 	AllocatedBuffer cameraBuffer;
 
@@ -133,6 +152,10 @@ struct FrameData {
 	VkDescriptorSet objectDescriptor;
 
 	VkDescriptorSet globalDescriptor;
+
+	AllocatedBuffer animationBuffer;
+	VkDescriptorSet animationDescriptor;
+
 };
 
 struct xrFrameData {
@@ -145,6 +168,8 @@ struct xrFrameData {
 struct GPUObjectData {
 	glm::mat4 modelMatrix;
 };
+
+
 
 struct GPUCameraData {
 	glm::mat4 view;
@@ -161,6 +186,19 @@ struct RenderTexture {
 
 };
 
+
+struct Image {
+	VkImage image;
+	VmaAllocation allocation;
+	VkImageView imageView;
+};
+
+struct PassData {
+	VkRenderPass rp;
+	VkFramebuffer fb;
+	VkPipelineLayout pipelineLayout;
+	VkPipeline pl;
+};
 
 struct xrRenderTarget {
 	uint32_t width;
@@ -181,6 +219,8 @@ struct GPUSceneData {
 	glm::vec4 ambientColor;
 	glm::vec4 sunlightDirection; //w for sun power
 	glm::vec4 sunlightColor;
+	glm::vec3 sunPosition;
+	glm::vec3 camPosition;
 };
 
 struct UploadContext {
@@ -200,13 +240,14 @@ class VulkanEngine {
 public:
 
 	Scene mainScene;
+	AnimatedMesh character;
 	GPUSceneData _sceneParameters;
 	AllocatedBuffer _sceneParameterBuffer;
 	float deltaTime;
 	//Entity monkey;
 	
 	InputState m_input;
-	glm::vec3 thumstickPos;
+	glm::vec3 thumstickPos {0.0f, 0.0f, 0.0f};
 
 	XrInstance _xrInstance;
 	XrSystemId _xrSystemId;
@@ -232,19 +273,24 @@ public:
 
 	void immediate_submit(std::function<void(VkCommandBuffer cmd)>&& function);
 
+
 	VulkanEngine();
 
 	glm::mat4 cameraRotationTransform{ 0 };
 	glm::vec3 _tgtPos{ 0.f,-2.f,-5.f };
-	glm::vec3 _camPos{ 0.f, 0.f,-2.f };
+	glm::vec3 _camPos{ 0.f, -5.f,-2.f };
 	glm::vec3 _vrPos{ 0.f, 0.f, 0.f };
 	glm::quat _vrRot;
+	XrPosef handPose;
+	glm::mat4 lightSpaceMatrix;
+
 
 	XrCompositionLayerProjectionView _xrProjView;
 
 	float pitch{ 0 };
 	float yaw{ 0 };
 	Mesh _monkeyMesh;
+	ImGuiContext* _imguictx;
 
 	VmaAllocator _allocator; //vma lib allocator
 
@@ -270,7 +316,13 @@ public:
 	VkDescriptorSetLayout _globalSetLayout;
 	VkDescriptorSetLayout _objectSetLayout;
 	VkDescriptorSetLayout _singleTextureSetLayout;
+	VkDescriptorSetLayout boneTransformSetLayout;
+	VkDescriptorSetLayout shadowTextureSetLayout;
+	VkDescriptorSet shadowSet;
 	VkDescriptorPool _descriptorPool;
+
+	vkutil::DescriptorAllocator* _descriptorAllocator;
+	vkutil::DescriptorLayoutCache* _descriptorLayoutCache;
 
 // image format expected by the windowing system
 	VkFormat _swapchainImageFormat;
@@ -291,10 +343,11 @@ public:
 	VkQueue _graphicsQueue; //queue we will submit to
 	uint32_t _graphicsQueueFamily; //family of that queue
 
-
-
+	VkExtent3D shadowMapResolution{ 2048, 2048, 1 };
+	Image shadowImage;
 
 	VkRenderPass _renderPass;
+	PassData shadowPassData;
 
 	std::vector<VkFramebuffer> _framebuffers;
 
@@ -302,6 +355,7 @@ public:
 	VkPipelineLayout _meshPipelineLayout, _texturedPipeLayout;
 	VkPipeline _meshPipeline;
 	Mesh _triangleMesh;
+	
 
 	VkExtent2D _windowExtent{ 1700 , 1700 };
 
@@ -362,35 +416,46 @@ public:
 
 private:
 
+	void shadowPass(VkCommandBuffer cmd);
+
+
 	void init_vulkan();
 	void init_xrVulkan();
 	void init_descriptors();
-	
+	void init_imgui();
 
 
 	void init_swapchain();
 	void init_xrSwapchain();
 	void init_mirSwapchain();
 
+	void init_miscImages();
+
 	void init_commands();
+	void init_miscCommands();
 
 	void init_default_xrRenderpass();
 	void init_default_renderpass();
+	void init_shadow_Renderpass();
 
 	void init_framebuffers();
 	void init_xrFramebuffers();
+	void init_miscFramebuffers();
 
 	void init_sync_structures();
 
 	void init_pipelines();
 	void init_xrPipelines();
+	void init_miscPipelines();
 	
 
 	bool load_shader_module(const char* filePath, VkShaderModule* outShaderModule);
 	
 	//other code ....
 	void load_meshes();
+	
 
+	void upload_animmesh(AnimatedMesh& mesh);
 	void upload_mesh(Mesh& mesh);
 
 	void init_scene();

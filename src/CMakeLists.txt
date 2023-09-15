@@ -41,10 +41,7 @@ add_library(SRC STATIC ${Sources})
 
 
 
-# option 2: apply the option on a per-target basis
-target_link_options(SRC PRIVATE $<$<CONFIG:Debug>:/INCREMENTAL>)
-target_compile_options(SRC PRIVATE $<$<CONFIG:Debug>:/ZI>)
-target_compile_options(SRC PRIVATE $<$<CONFIG:Debug>:/Gm>)
+
  
 
 
@@ -60,5 +57,6 @@ target_include_directories(SRC PUBLIC D:\\assimp\\include)
 target_include_directories(SRC PUBLIC D:\\assimp\\out\\build\\x64-Debug\\include)
 cmake_print_variables(LIB_ASSIMP_FILE)
 target_include_directories(SRC PUBLIC D:\\Users\\rahul\\Source\\repos\\VulkanDevelopment\\spdlog\\include)
-target_link_libraries(SRC ${LIB_SDL_FILE} ${LIB_VULK_FILE} ${LIB_ASSIMP_FILE} vk-bootstrap::vk-bootstrap vma glm::glm tinyobjloader LibOVR spdlog::spdlog EnTT::EnTT ${LIB_OXR_FILE} stb)
+target_link_libraries(SRC ${LIB_SDL_FILE} ${LIB_VULK_FILE} ${LIB_ASSIMP_FILE} vk-bootstrap::vk-bootstrap vma glm::glm tinyobjloader LibOVR spdlog::spdlog EnTT::EnTT ${LIB_OXR_FILE} stb imgui AssetSystem)
 
+  

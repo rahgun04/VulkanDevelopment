@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: VulkanDevelopment
+# Project: vulkan-development
 # Configurations: Debug
 # =============================================================================
 
@@ -44,7 +44,7 @@ cmake_ninja_workdir = D$:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x
 #############################################
 # Utility command for Shaders
 
-build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\default_lit.frag.spv ..\..\..\shaders\textured_lit.frag.spv ..\..\..\shaders\tri_mesh.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\anim.vert.spv ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\default_lit.frag.spv ..\..\..\shaders\shadow.frag.spv ..\..\..\shaders\shadow.vert.spv ..\..\..\shaders\textured_lit.frag.spv ..\..\..\shaders\tri_mesh.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
 
 
 #############################################
@@ -103,7 +103,16 @@ build install\local: phony CMakeFiles\install\local.util
 #############################################
 # Phony custom command for CMakeFiles\Shaders
 
-build CMakeFiles\Shaders | ${cmake_ninja_workdir}CMakeFiles\Shaders: phony ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\default_lit.frag.spv ..\..\..\shaders\textured_lit.frag.spv ..\..\..\shaders\tri_mesh.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build CMakeFiles\Shaders | ${cmake_ninja_workdir}CMakeFiles\Shaders: phony ..\..\..\shaders\anim.vert.spv ..\..\..\shaders\coloured_triangle.frag.spv ..\..\..\shaders\coloured_triangle.vert.spv ..\..\..\shaders\default_lit.frag.spv ..\..\..\shaders\shadow.frag.spv ..\..\..\shaders\shadow.vert.spv ..\..\..\shaders\textured_lit.frag.spv ..\..\..\shaders\tri_mesh.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+
+
+#############################################
+# Custom command for ..\..\..\shaders\anim.vert.spv
+
+build ..\..\..\shaders\anim.vert.spv | ${cmake_ninja_workdir}..\..\..\shaders\anim.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\anim.vert
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslc.exe D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/anim.vert -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/anim.vert.spv"
+  DESC = Generating ../../../shaders/anim.vert.spv
+  restat = 1
 
 
 #############################################
@@ -130,6 +139,24 @@ build ..\..\..\shaders\coloured_triangle.vert.spv | ${cmake_ninja_workdir}..\..\
 build ..\..\..\shaders\default_lit.frag.spv | ${cmake_ninja_workdir}..\..\..\shaders\default_lit.frag.spv: CUSTOM_COMMAND ..\..\..\shaders\default_lit.frag
   COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslc.exe D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/default_lit.frag -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/default_lit.frag.spv"
   DESC = Generating ../../../shaders/default_lit.frag.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\shadow.frag.spv
+
+build ..\..\..\shaders\shadow.frag.spv | ${cmake_ninja_workdir}..\..\..\shaders\shadow.frag.spv: CUSTOM_COMMAND ..\..\..\shaders\shadow.frag
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslc.exe D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/shadow.frag -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/shadow.frag.spv"
+  DESC = Generating ../../../shaders/shadow.frag.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\shadow.vert.spv
+
+build ..\..\..\shaders\shadow.vert.spv | ${cmake_ninja_workdir}..\..\..\shaders\shadow.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\shadow.vert
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug && D:\VulkanSDK\1.3.216.0\Bin\glslc.exe D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/shadow.vert -o D:/Users/rahul/Source/repos/VulkanDevelopment/shaders/shadow.vert.spv"
+  DESC = Generating ../../../shaders/shadow.vert.spv
   restat = 1
 
 
@@ -180,12 +207,12 @@ build ..\..\..\shaders\triangle.vert.spv | ${cmake_ninja_workdir}..\..\..\shader
 #############################################
 # Order-only phony target for VulkanDevelopment
 
-build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_SRC cmake_object_order_depends_target_spdlog cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
+build cmake_object_order_depends_target_VulkanDevelopment: phony || cmake_object_order_depends_target_AssetSystem cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_SRC cmake_object_order_depends_target_imgui cmake_object_order_depends_target_spdlog cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
 
 build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj: CXX_COMPILER__VulkanDevelopment_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\VulkanDevelopment\VulkanDevelopment.cpp || cmake_object_order_depends_target_VulkanDevelopment
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   OBJECT_FILE_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   TARGET_COMPILE_PDB = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\
@@ -199,10 +226,10 @@ build VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.o
 #############################################
 # Link the executable VulkanDevelopment\VulkanDevelopment.exe
 
-build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib D$:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib vk-bootstrap\vk-bootstrap.lib tinyobjloader\tinyobjloader.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib D$:\OpenXR-SDK\OpenXR-SDK\out\build\x64-Debug\src\loader\openxr_loaderd.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib src\SRC.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+build VulkanDevelopment\VulkanDevelopment.exe: CXX_EXECUTABLE_LINKER__VulkanDevelopment_Debug VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir\VulkanDevelopment.cpp.obj | src\SRC.lib D$:\SDL2-2.0.22\lib\x64\SDL2.lib D$:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib D$:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib vk-bootstrap\vk-bootstrap.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib D$:\OpenXR-SDK\OpenXR-SDK\out\build\x64-Debug\src\loader\openxr_loaderd.lib imgui\imgui.lib AssetSystem\AssetSystem.lib tinyobjloader\tinyobjloader.lib D$:\lz4-1.9.4\build\VS2017\bin\x64_Debug\liblz4.lib || AssetSystem\AssetSystem.lib imgui\imgui.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib src\SRC.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console  /INCREMENTAL
-  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  D:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib  vk-bootstrap\vk-bootstrap.lib  tinyobjloader\tinyobjloader.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  spdlog\spdlogd.lib  D:\OpenXR-SDK\OpenXR-SDK\out\build\x64-Debug\src\loader\openxr_loaderd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = src\SRC.lib  D:\SDL2-2.0.22\lib\x64\SDL2.lib  D:\VulkanSDK\1.3.216.0\Lib\vulkan-1.lib  D:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib  vk-bootstrap\vk-bootstrap.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  spdlog\spdlogd.lib  D:\OpenXR-SDK\OpenXR-SDK\out\build\x64-Debug\src\loader\openxr_loaderd.lib  imgui\imgui.lib  AssetSystem\AssetSystem.lib  tinyobjloader\tinyobjloader.lib  D:\lz4-1.9.4\build\VS2017\bin\x64_Debug\liblz4.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = VulkanDevelopment\CMakeFiles\VulkanDevelopment.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -276,12 +303,12 @@ build VulkanDevelopment\install\local: phony VulkanDevelopment\CMakeFiles\instal
 #############################################
 # Order-only phony target for SRC
 
-build cmake_object_order_depends_target_SRC: phony || cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_spdlog cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
+build cmake_object_order_depends_target_SRC: phony || cmake_object_order_depends_target_AssetSystem cmake_object_order_depends_target_LibOVR cmake_object_order_depends_target_imgui cmake_object_order_depends_target_spdlog cmake_object_order_depends_target_tinyobjloader cmake_object_order_depends_target_vk-bootstrap
 
 build src\CMakeFiles\SRC.dir\check.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\check.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -289,8 +316,17 @@ build src\CMakeFiles\SRC.dir\check.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\ra
 
 build src\CMakeFiles\SRC.dir\converter.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\converter.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
+  OBJECT_DIR = src\CMakeFiles\SRC.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
+  TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
+  TARGET_PDB = src\SRC.pdb
+
+build src\CMakeFiles\SRC.dir\vk_descriptors.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_descriptors.cpp || cmake_object_order_depends_target_SRC
+  DEFINES = -DSPDLOG_COMPILED_LIB
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -298,8 +334,8 @@ build src\CMakeFiles\SRC.dir\converter.cpp.obj: CXX_COMPILER__SRC_Debug D$:\User
 
 build src\CMakeFiles\SRC.dir\vk_ecs.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_ecs.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -307,8 +343,8 @@ build src\CMakeFiles\SRC.dir\vk_ecs.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\r
 
 build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_engine.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -316,8 +352,8 @@ build src\CMakeFiles\SRC.dir\vk_engine.cpp.obj: CXX_COMPILER__SRC_Debug D$:\User
 
 build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_init.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -325,8 +361,8 @@ build src\CMakeFiles\SRC.dir\vk_init.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\
 
 build src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_mesh.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -334,8 +370,8 @@ build src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\
 
 build src\CMakeFiles\SRC.dir\vk_textures.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\src\vk_textures.cpp || cmake_object_order_depends_target_SRC
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI /Gm -std:c++17
-  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src -ID:\OpenXR-SDK\OpenXR-SDK\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\src\..\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\vma -ID:\Users\rahul\Source\repos\VulkanDevelopment\glm -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\entt\src -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   OBJECT_FILE_DIR = src\CMakeFiles\SRC.dir
   TARGET_COMPILE_PDB = src\CMakeFiles\SRC.dir\SRC.pdb
@@ -349,8 +385,8 @@ build src\CMakeFiles\SRC.dir\vk_textures.cpp.obj: CXX_COMPILER__SRC_Debug D$:\Us
 #############################################
 # Link the static library src\SRC.lib
 
-build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\check.cpp.obj src\CMakeFiles\SRC.dir\converter.cpp.obj src\CMakeFiles\SRC.dir\vk_ecs.cpp.obj src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj src\CMakeFiles\SRC.dir\vk_textures.cpp.obj || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+build src\SRC.lib: CXX_STATIC_LIBRARY_LINKER__SRC_Debug src\CMakeFiles\SRC.dir\check.cpp.obj src\CMakeFiles\SRC.dir\converter.cpp.obj src\CMakeFiles\SRC.dir\vk_descriptors.cpp.obj src\CMakeFiles\SRC.dir\vk_ecs.cpp.obj src\CMakeFiles\SRC.dir\vk_engine.cpp.obj src\CMakeFiles\SRC.dir\vk_init.cpp.obj src\CMakeFiles\SRC.dir\vk_mesh.cpp.obj src\CMakeFiles\SRC.dir\vk_textures.cpp.obj || AssetSystem\AssetSystem.lib imgui\imgui.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib spdlog\spdlogd.lib tinyobjloader\tinyobjloader.lib vk-bootstrap\vk-bootstrap.lib
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = src\CMakeFiles\SRC.dir
   POST_BUILD = cd .
@@ -485,7 +521,7 @@ build thirdParty\install\local: phony thirdParty\CMakeFiles\install\local.util
 build cmake_object_order_depends_target_vk-bootstrap: phony || vk-bootstrap\CMakeFiles\vk-bootstrap.dir
 
 build vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src\VkBootstrap.cpp.obj: CXX_COMPILER__vk-bootstrap_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src\VkBootstrap.cpp || cmake_object_order_depends_target_vk-bootstrap
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd /W4
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\vk-bootstrap\src -ID:\VulkanSDK\1.3.216.0\Include\vulkan
   OBJECT_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir
   OBJECT_FILE_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src
@@ -501,7 +537,7 @@ build vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src\VkBootstrap.cpp.obj: CXX_COMP
 # Link the static library vk-bootstrap\vk-bootstrap.lib
 
 build vk-bootstrap\vk-bootstrap.lib: CXX_STATIC_LIBRARY_LINKER__vk-bootstrap_Debug vk-bootstrap\CMakeFiles\vk-bootstrap.dir\src\VkBootstrap.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = vk-bootstrap\CMakeFiles\vk-bootstrap.dir
   POST_BUILD = cd .
@@ -578,7 +614,7 @@ build vk-bootstrap\install\local: phony vk-bootstrap\CMakeFiles\install\local.ut
 build cmake_object_order_depends_target_tinyobjloader: phony || tinyobjloader\CMakeFiles\tinyobjloader.dir
 
 build tinyobjloader\CMakeFiles\tinyobjloader.dir\tiny_obj_loader.cc.obj: CXX_COMPILER__tinyobjloader_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader\tiny_obj_loader.cc || cmake_object_order_depends_target_tinyobjloader
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   OBJECT_DIR = tinyobjloader\CMakeFiles\tinyobjloader.dir
   OBJECT_FILE_DIR = tinyobjloader\CMakeFiles\tinyobjloader.dir
   TARGET_COMPILE_PDB = tinyobjloader\CMakeFiles\tinyobjloader.dir\tinyobjloader.pdb
@@ -593,7 +629,7 @@ build tinyobjloader\CMakeFiles\tinyobjloader.dir\tiny_obj_loader.cc.obj: CXX_COM
 # Link the static library tinyobjloader\tinyobjloader.lib
 
 build tinyobjloader\tinyobjloader.lib: CXX_STATIC_LIBRARY_LINKER__tinyobjloader_Debug tinyobjloader\CMakeFiles\tinyobjloader.dir\tiny_obj_loader.cc.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = tinyobjloader\CMakeFiles\tinyobjloader.dir
   POST_BUILD = cd .
@@ -858,7 +894,7 @@ build cmake_object_order_depends_target_TinyXml: phony || ovr_sdk_win_32.0.0\3rd
 
 build ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir\tinyxml2.cpp.obj: CXX_COMPILER__TinyXml_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\tinyxml2.cpp || cmake_object_order_depends_target_TinyXml
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir
@@ -874,7 +910,7 @@ build ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir\tinyxml2.cpp.ob
 # Link the static library ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib
 
 build ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib: CXX_STATIC_LIBRARY_LINKER__TinyXml_Debug ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir\tinyxml2.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeFiles\TinyXml.dir
   POST_BUILD = cd .
@@ -952,7 +988,7 @@ build cmake_object_order_depends_target_LibOVRKernel: phony || cmake_object_orde
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\GL\CAPI_GLE.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\GL\CAPI_GLE.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\GL
@@ -961,7 +997,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\GL\CAPI_GL
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Alg.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Alg.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -970,7 +1006,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Allocator.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Allocator.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -979,7 +1015,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Atomic.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Atomic.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -988,7 +1024,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Callbacks.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Callbacks.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -997,7 +1033,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_DebugHelp.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_DebugHelp.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1006,7 +1042,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Error.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Error.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1015,7 +1051,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_File.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_File.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1024,7 +1060,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_FileFILE.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_FileFILE.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1033,7 +1069,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_JSON.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_JSON.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1042,7 +1078,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_RefCount.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_RefCount.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1051,7 +1087,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_SharedMemory.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_SharedMemory.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1060,7 +1096,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Std.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Std.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1069,7 +1105,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_String.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1078,7 +1114,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String_FormatUtil.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_String_FormatUtil.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1087,7 +1123,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String_PathUtil.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_String_PathUtil.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1096,7 +1132,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_SysFile.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_SysFile.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1105,7 +1141,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_System.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_System.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1114,7 +1150,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_ThreadsPthread.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_ThreadsPthread.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1123,7 +1159,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_ThreadsWinAPI.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_ThreadsWinAPI.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1132,7 +1168,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Timer.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_Timer.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1141,7 +1177,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_UTF8Util.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Kernel\OVR_UTF8Util.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel
@@ -1160,7 +1196,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Tracing\Li
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_D3D11_Blitter.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_D3D11_Blitter.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1169,7 +1205,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_Direct3D.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_Direct3D.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1178,7 +1214,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_GL_Blitter.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_GL_Blitter.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1187,7 +1223,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_ImageWindow.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_ImageWindow.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1196,7 +1232,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_LongPollThread.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_LongPollThread.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1205,7 +1241,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_SystemGUI.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_SystemGUI.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1214,7 +1250,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_SystemInfo.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_SystemInfo.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1223,7 +1259,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_Watchdog.cpp.obj: CXX_COMPILER__LibOVRKernel_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src\Util\Util_Watchdog.cpp || cmake_object_order_depends_target_LibOVRKernel
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util
@@ -1239,7 +1275,7 @@ build ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_
 # Link the static library ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib
 
 build ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib: CXX_STATIC_LIBRARY_LINKER__LibOVRKernel_Debug ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\GL\CAPI_GLE.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Alg.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Allocator.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Atomic.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Callbacks.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_DebugHelp.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Error.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_File.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_FileFILE.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_JSON.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_RefCount.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_SharedMemory.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Std.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String_FormatUtil.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_String_PathUtil.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_SysFile.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_System.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_ThreadsPthread.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_ThreadsWinAPI.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_Timer.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Kernel\OVR_UTF8Util.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Tracing\LibOVREvents.rc.res ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_D3D11_Blitter.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_Direct3D.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_GL_Blitter.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_ImageWindow.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_LongPollThread.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_SystemGUI.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_SystemInfo.cpp.obj ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir\Src\Util\Util_Watchdog.cpp.obj || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVRKernel\CMakeFiles\LibOVRKernel.dir
   POST_BUILD = cd .
@@ -1326,7 +1362,7 @@ build ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_CAPIShim.c.obj: C
 
 build ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_CAPI_Util.cpp.obj: CXX_COMPILER__LibOVR_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Shim\OVR_CAPI_Util.cpp || cmake_object_order_depends_target_LibOVR
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim
@@ -1335,7 +1371,7 @@ build ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_CAPI_Util.cpp.obj
 
 build ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_StereoProjection.cpp.obj: CXX_COMPILER__LibOVR_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Shim\OVR_StereoProjection.cpp || cmake_object_order_depends_target_LibOVR
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim
@@ -1351,7 +1387,7 @@ build ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_StereoProjection.
 # Link the static library ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
 
 build ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib: CXX_STATIC_LIBRARY_LINKER__LibOVR_Debug ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_CAPIShim.c.obj ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_CAPI_Util.cpp.obj ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir\Shim\OVR_StereoProjection.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = ovr_sdk_win_32.0.0\LibOVR\CMakeFiles\LibOVR.dir
   POST_BUILD = cd .
@@ -1429,7 +1465,7 @@ build cmake_object_order_depends_target_PC_SDK_Logging: phony || ovr_sdk_win_32.
 
 build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Library.cpp.obj: CXX_COMPILER__PC_SDK_Logging_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\src\Logging_Library.cpp || cmake_object_order_depends_target_PC_SDK_Logging
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src
@@ -1438,7 +1474,7 @@ build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Libra
 
 build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_OutputPlugins.cpp.obj: CXX_COMPILER__PC_SDK_Logging_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\src\Logging_OutputPlugins.cpp || cmake_object_order_depends_target_PC_SDK_Logging
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src
@@ -1447,7 +1483,7 @@ build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Outpu
 
 build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Tools.cpp.obj: CXX_COMPILER__PC_SDK_Logging_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\src\Logging_Tools.cpp || cmake_object_order_depends_target_PC_SDK_Logging
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src
@@ -1463,7 +1499,7 @@ build ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Tools
 # Link the static library ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib
 
 build ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib: CXX_STATIC_LIBRARY_LINKER__PC_SDK_Logging_Debug ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Library.cpp.obj ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_OutputPlugins.cpp.obj ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir\src\Logging_Tools.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = ovr_sdk_win_32.0.0\Logging\CMakeFiles\PC_SDK_Logging.dir
   POST_BUILD = cd .
@@ -1599,7 +1635,7 @@ build cmake_object_order_depends_target_CommonSrc: phony || cmake_object_order_d
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Platform.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Platform\Platform.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform
@@ -1608,7 +1644,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Pla
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win32_Gamepad.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Platform\Win32_Gamepad.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform
@@ -1617,7 +1653,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win32_Platform.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Platform\Win32_Platform.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform
@@ -1626,7 +1662,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_D3D11_Device.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_D3D11_Device.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1635,7 +1671,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_Device.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_Device.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1644,7 +1680,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_GL_Device.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_GL_Device.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1653,7 +1689,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_GL_Win32_Device.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_GL_Win32_Device.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1662,7 +1698,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_LoadTextureDDS.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_LoadTextureDDS.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1671,7 +1707,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_LoadTextureTGA.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_LoadTextureTGA.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1680,7 +1716,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_XmlSceneLoader.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Render\Render_XmlSceneLoader.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render
@@ -1689,7 +1725,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Rende
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\OptionMenu.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Util\OptionMenu.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util
@@ -1698,7 +1734,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\OptionM
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\RenderProfiler.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Util\RenderProfiler.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util
@@ -1707,7 +1743,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\RenderP
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\StringHelper.cpp.obj: CXX_COMPILER__CommonSrc_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\Util\StringHelper.cpp || cmake_object_order_depends_target_CommonSrc
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util
@@ -1723,7 +1759,7 @@ build ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\StringH
 # Link the static library ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib
 
 build ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib: CXX_STATIC_LIBRARY_LINKER__CommonSrc_Debug ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Platform.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win32_Gamepad.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Platform\Win32_Platform.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_D3D11_Device.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_Device.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_GL_Device.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_GL_Win32_Device.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_LoadTextureDDS.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_LoadTextureTGA.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Render\Render_XmlSceneLoader.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\OptionMenu.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\RenderProfiler.cpp.obj ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir\Util\StringHelper.cpp.obj || ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeFiles\CommonSrc.dir
   POST_BUILD = cd .
@@ -1801,7 +1837,7 @@ build cmake_object_order_depends_target_GuardianSystemDemo: phony || cmake_objec
 
 build ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDemo.dir\main.cpp.obj: CXX_COMPILER__GuardianSystemDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\main.cpp || cmake_object_order_depends_target_GuardianSystemDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDemo.dir
@@ -1817,7 +1853,7 @@ build ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDem
 # Link the executable ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\GuardianSystemDemo.exe
 
 build ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\GuardianSystemDemo.exe: CXX_EXECUTABLE_LINKER__GuardianSystemDemo_Debug ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDemo.dir\main.cpp.obj | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeFiles\GuardianSystemDemo.dir
@@ -1897,7 +1933,7 @@ build cmake_object_order_depends_target_OculusPerfStatsSample: phony || cmake_ob
 
 build ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStatsSample.dir\OculusPerfStatsSample.cpp.obj: CXX_COMPILER__OculusPerfStatsSample_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\OculusPerfStatsSample.cpp || cmake_object_order_depends_target_OculusPerfStatsSample
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStatsSample.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStatsSample.dir
@@ -1913,7 +1949,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStat
 # Link the executable ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\OculusPerfStatsSample.exe
 
 build ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\OculusPerfStatsSample.exe: CXX_EXECUTABLE_LINKER__OculusPerfStatsSample_Debug ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStatsSample.dir\OculusPerfStatsSample.cpp.obj | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeFiles\OculusPerfStatsSample.dir
@@ -2051,7 +2087,7 @@ build cmake_object_order_depends_target_OculusRoomTiny_DX11: phony || cmake_obje
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\OculusRoomTiny_DX11.dir\main.cpp.obj: CXX_COMPILER__OculusRoomTiny_DX11_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\main.cpp || cmake_object_order_depends_target_OculusRoomTiny_DX11
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\OculusRoomTiny_DX11.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\OculusRoomTiny_DX11.dir
@@ -2067,7 +2103,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\O
 # Link the executable ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\OculusRoomTiny_DX11.exe
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\OculusRoomTiny_DX11.exe: CXX_EXECUTABLE_LINKER__OculusRoomTiny_DX11_Debug ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\OculusRoomTiny_DX11.dir\main.cpp.obj | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeFiles\OculusRoomTiny_DX11.dir
@@ -2147,7 +2183,7 @@ build cmake_object_order_depends_target_OculusRoomTiny_DX12: phony || cmake_obje
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\OculusRoomTiny_DX12.dir\main.cpp.obj: CXX_COMPILER__OculusRoomTiny_DX12_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\main.cpp || cmake_object_order_depends_target_OculusRoomTiny_DX12
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\OculusRoomTiny_DX12.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\OculusRoomTiny_DX12.dir
@@ -2163,7 +2199,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\O
 # Link the executable ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\OculusRoomTiny_DX12.exe
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\OculusRoomTiny_DX12.exe: CXX_EXECUTABLE_LINKER__OculusRoomTiny_DX12_Debug ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\OculusRoomTiny_DX12.dir\main.cpp.obj | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib || ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeFiles\OculusRoomTiny_DX12.dir
@@ -2243,7 +2279,7 @@ build cmake_object_order_depends_target_OculusRoomTiny_GL: phony || cmake_object
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\OculusRoomTiny_GL.dir\main.cpp.obj: CXX_COMPILER__OculusRoomTiny_GL_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\main.cpp || cmake_object_order_depends_target_OculusRoomTiny_GL
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\.
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\OculusRoomTiny_GL.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\OculusRoomTiny_GL.dir
@@ -2259,7 +2295,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\Ocu
 # Link the executable ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\OculusRoomTiny_GL.exe
 
 build ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\OculusRoomTiny_GL.exe: CXX_EXECUTABLE_LINKER__OculusRoomTiny_GL_Debug ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\OculusRoomTiny_GL.dir\main.cpp.obj | ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib || ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeFiles\OculusRoomTiny_GL.dir
@@ -2397,7 +2433,7 @@ build cmake_object_order_depends_target_OculusWorldDemo: phony || cmake_object_o
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\OculusWorldDemo.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2406,7 +2442,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\OculusWorldDemo_Scene.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo_Scene.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2415,7 +2451,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\PerfCapture.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\PerfCapture.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2424,7 +2460,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Player.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\Player.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2433,7 +2469,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Script.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\Script.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2442,7 +2478,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Tracker.cpp.obj: CXX_COMPILER__OculusWorldDemo_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\Tracker.cpp || cmake_object_order_depends_target_OculusWorldDemo
   DEFINES = -DUNICODE -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++17
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Samples\CommonSrc\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVRKernel\Src -ID:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\ovr_sdk_win_32.0.0\LibOVRKernel -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\LibOVR\Include -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\Logging\. -ID:\Users\rahul\Source\repos\VulkanDevelopment\ovr_sdk_win_32.0.0\3rdParty\TinyXml\..
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
   OBJECT_FILE_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2458,7 +2494,7 @@ build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\
 # Link the executable ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo.exe
 
 build ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\OculusWorldDemo.exe: CXX_EXECUTABLE_LINKER__OculusWorldDemo_Debug ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\OculusWorldDemo.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\OculusWorldDemo_Scene.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\PerfCapture.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Player.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Script.cpp.obj ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir\Tracker.cpp.obj | ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib || ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  ovr_sdk_win_32.0.0\LibOVRKernel\LibOVRKernel.lib  ovr_sdk_win_32.0.0\3rdParty\TinyXml\TinyXml.lib  ovr_sdk_win_32.0.0\LibOVR\LibOVR.lib  ovr_sdk_win_32.0.0\Logging\PC_SDK_Logging.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeFiles\OculusWorldDemo.dir
@@ -2538,7 +2574,7 @@ build cmake_object_order_depends_target_spdlog: phony || spdlog\CMakeFiles\spdlo
 
 build spdlog\CMakeFiles\spdlog.dir\src\spdlog.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\spdlog.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2547,7 +2583,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\spdlog.cpp.obj: CXX_COMPILER__spdlog_Debu
 
 build spdlog\CMakeFiles\spdlog.dir\src\stdout_sinks.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\stdout_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2556,7 +2592,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\stdout_sinks.cpp.obj: CXX_COMPILER__spdlo
 
 build spdlog\CMakeFiles\spdlog.dir\src\color_sinks.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\color_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2565,7 +2601,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\color_sinks.cpp.obj: CXX_COMPILER__spdlog
 
 build spdlog\CMakeFiles\spdlog.dir\src\file_sinks.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\file_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2574,7 +2610,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\file_sinks.cpp.obj: CXX_COMPILER__spdlog_
 
 build spdlog\CMakeFiles\spdlog.dir\src\async.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\async.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2583,7 +2619,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\async.cpp.obj: CXX_COMPILER__spdlog_Debug
 
 build spdlog\CMakeFiles\spdlog.dir\src\cfg.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\cfg.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2592,7 +2628,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\cfg.cpp.obj: CXX_COMPILER__spdlog_Debug D
 
 build spdlog\CMakeFiles\spdlog.dir\src\fmt.cpp.obj: CXX_COMPILER__spdlog_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\src\fmt.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\spdlog\include
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   OBJECT_FILE_DIR = spdlog\CMakeFiles\spdlog.dir\src
@@ -2608,7 +2644,7 @@ build spdlog\CMakeFiles\spdlog.dir\src\fmt.cpp.obj: CXX_COMPILER__spdlog_Debug D
 # Link the static library spdlog\spdlogd.lib
 
 build spdlog\spdlogd.lib: CXX_STATIC_LIBRARY_LINKER__spdlog_Debug spdlog\CMakeFiles\spdlog.dir\src\spdlog.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\stdout_sinks.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\color_sinks.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\file_sinks.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\async.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\cfg.cpp.obj spdlog\CMakeFiles\spdlog.dir\src\fmt.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /Zi /Ob0 /Od /RTC1 -MDd
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zc:__cplusplus /MP /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = spdlog\CMakeFiles\spdlog.dir
   POST_BUILD = cd .
@@ -2743,7 +2779,7 @@ build entt\install\local: phony entt\CMakeFiles\install\local.util
 build cmake_object_order_depends_target_testAssimp: phony || TestingTargets\CMakeFiles\testAssimp.dir
 
 build TestingTargets\CMakeFiles\testAssimp.dir\testAssimp.cpp.obj: CXX_COMPILER__testAssimp_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\TestingTargets\testAssimp.cpp || cmake_object_order_depends_target_testAssimp
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /ZI
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd /ZI
   INCLUDES = -ID:\assimp\include -ID:\assimp\out\build\x64-Debug\include
   OBJECT_DIR = TestingTargets\CMakeFiles\testAssimp.dir
   OBJECT_FILE_DIR = TestingTargets\CMakeFiles\testAssimp.dir
@@ -2759,7 +2795,7 @@ build TestingTargets\CMakeFiles\testAssimp.dir\testAssimp.cpp.obj: CXX_COMPILER_
 # Link the executable TestingTargets\testAssimp.exe
 
 build TestingTargets\testAssimp.exe: CXX_EXECUTABLE_LINKER__testAssimp_Debug TestingTargets\CMakeFiles\testAssimp.dir\testAssimp.cpp.obj | D$:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console  /INCREMENTAL
   LINK_LIBRARIES = D:\assimp\out\build\x64-Debug\lib\assimp-vc143-mtd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = TestingTargets\CMakeFiles\testAssimp.dir
@@ -2824,7 +2860,392 @@ build TestingTargets\CMakeFiles\install\local.util: CUSTOM_COMMAND TestingTarget
 build TestingTargets\install\local: phony TestingTargets\CMakeFiles\install\local.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target imgui
+
+
+#############################################
+# Order-only phony target for imgui
+
+build cmake_object_order_depends_target_imgui: phony || imgui\CMakeFiles\imgui.dir
+
+build imgui\CMakeFiles\imgui.dir\backends\imgui_impl_sdl2.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends\imgui_impl_sdl2.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir\backends
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\backends\imgui_impl_vulkan.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends\imgui_impl_vulkan.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir\backends
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\imgui.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\imgui.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\imgui_demo.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\imgui_demo.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\imgui_draw.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\imgui_draw.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\imgui_tables.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\imgui_tables.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+build imgui\CMakeFiles\imgui.dir\imgui_widgets.cpp.obj: CXX_COMPILER__imgui_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\imgui\imgui_widgets.cpp || cmake_object_order_depends_target_imgui
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  INCLUDES = -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui -ID:\Users\rahul\Source\repos\VulkanDevelopment\imgui\backends -ID:\VulkanSDK\1.3.216.0\Include\vulkan -ID:\SDL2-2.0.22\include
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  OBJECT_FILE_DIR = imgui\CMakeFiles\imgui.dir
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_PDB = imgui\imgui.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target imgui
+
+
+#############################################
+# Link the static library imgui\imgui.lib
+
+build imgui\imgui.lib: CXX_STATIC_LIBRARY_LINKER__imgui_Debug imgui\CMakeFiles\imgui.dir\backends\imgui_impl_sdl2.cpp.obj imgui\CMakeFiles\imgui.dir\backends\imgui_impl_vulkan.cpp.obj imgui\CMakeFiles\imgui.dir\imgui.cpp.obj imgui\CMakeFiles\imgui.dir\imgui_demo.cpp.obj imgui\CMakeFiles\imgui.dir\imgui_draw.cpp.obj imgui\CMakeFiles\imgui.dir\imgui_tables.cpp.obj imgui\CMakeFiles\imgui.dir\imgui_widgets.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = imgui\CMakeFiles\imgui.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = imgui\CMakeFiles\imgui.dir\imgui.pdb
+  TARGET_FILE = imgui\imgui.lib
+  TARGET_PDB = imgui\imgui.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build imgui\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\imgui && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build imgui\edit_cache: phony imgui\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build imgui\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\imgui && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\Users\rahul\Source\repos\VulkanDevelopment -BD:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build imgui\rebuild_cache: phony imgui\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build imgui\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build imgui\CMakeFiles\install.util: CUSTOM_COMMAND imgui\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\imgui && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build imgui\install: phony imgui\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build imgui\CMakeFiles\install\local.util: CUSTOM_COMMAND imgui\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\imgui && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build imgui\install\local: phony imgui\CMakeFiles\install\local.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target AssetSystemTool
+
+
+#############################################
+# Order-only phony target for AssetSystemTool
+
+build cmake_object_order_depends_target_AssetSystemTool: phony || cmake_object_order_depends_target_tinyobjloader
+
+build AssetSystem\CMakeFiles\AssetSystemTool.dir\asset_loader.cpp.obj: CXX_COMPILER__AssetSystemTool_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\asset_loader.cpp || cmake_object_order_depends_target_AssetSystemTool
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystemTool.dir\
+  TARGET_PDB = AssetSystem\AssetSystemTool.pdb
+
+build AssetSystem\CMakeFiles\AssetSystemTool.dir\asset_main.cpp.obj: CXX_COMPILER__AssetSystemTool_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\asset_main.cpp || cmake_object_order_depends_target_AssetSystemTool
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystemTool.dir\
+  TARGET_PDB = AssetSystem\AssetSystemTool.pdb
+
+build AssetSystem\CMakeFiles\AssetSystemTool.dir\mesh_asset.cpp.obj: CXX_COMPILER__AssetSystemTool_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\mesh_asset.cpp || cmake_object_order_depends_target_AssetSystemTool
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystemTool.dir\
+  TARGET_PDB = AssetSystem\AssetSystemTool.pdb
+
+build AssetSystem\CMakeFiles\AssetSystemTool.dir\texture_asset.cpp.obj: CXX_COMPILER__AssetSystemTool_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\texture_asset.cpp || cmake_object_order_depends_target_AssetSystemTool
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystemTool.dir\
+  TARGET_PDB = AssetSystem\AssetSystemTool.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target AssetSystemTool
+
+
+#############################################
+# Link the executable AssetSystem\AssetSystemTool.exe
+
+build AssetSystem\AssetSystemTool.exe: CXX_EXECUTABLE_LINKER__AssetSystemTool_Debug AssetSystem\CMakeFiles\AssetSystemTool.dir\asset_loader.cpp.obj AssetSystem\CMakeFiles\AssetSystemTool.dir\asset_main.cpp.obj AssetSystem\CMakeFiles\AssetSystemTool.dir\mesh_asset.cpp.obj AssetSystem\CMakeFiles\AssetSystemTool.dir\texture_asset.cpp.obj | D$:\lz4-1.9.4\build\VS2017\bin\x64_Debug\liblz4.lib tinyobjloader\tinyobjloader.lib || tinyobjloader\tinyobjloader.lib
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = D:\lz4-1.9.4\build\VS2017\bin\x64_Debug\liblz4.lib  tinyobjloader\tinyobjloader.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystemTool.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystemTool.dir\
+  TARGET_FILE = AssetSystem\AssetSystemTool.exe
+  TARGET_IMPLIB = AssetSystem\AssetSystemTool.lib
+  TARGET_PDB = AssetSystem\AssetSystemTool.pdb
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target AssetSystem
+
+
+#############################################
+# Order-only phony target for AssetSystem
+
+build cmake_object_order_depends_target_AssetSystem: phony || cmake_object_order_depends_target_tinyobjloader
+
+build AssetSystem\CMakeFiles\AssetSystem.dir\asset_loader.cpp.obj: CXX_COMPILER__AssetSystem_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\asset_loader.cpp || cmake_object_order_depends_target_AssetSystem
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystem.dir\AssetSystem.pdb
+  TARGET_PDB = AssetSystem\AssetSystem.pdb
+
+build AssetSystem\CMakeFiles\AssetSystem.dir\asset_main.cpp.obj: CXX_COMPILER__AssetSystem_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\asset_main.cpp || cmake_object_order_depends_target_AssetSystem
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystem.dir\AssetSystem.pdb
+  TARGET_PDB = AssetSystem\AssetSystem.pdb
+
+build AssetSystem\CMakeFiles\AssetSystem.dir\mesh_asset.cpp.obj: CXX_COMPILER__AssetSystem_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\mesh_asset.cpp || cmake_object_order_depends_target_AssetSystem
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystem.dir\AssetSystem.pdb
+  TARGET_PDB = AssetSystem\AssetSystem.pdb
+
+build AssetSystem\CMakeFiles\AssetSystem.dir\texture_asset.cpp.obj: CXX_COMPILER__AssetSystem_Debug D$:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem\texture_asset.cpp || cmake_object_order_depends_target_AssetSystem
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd -std:c++17
+  INCLUDES = -ID:\lz4-1.9.4\lib -ID:\Users\rahul\Source\repos\VulkanDevelopment\AssetSystem -ID:\Users\rahul\Source\repos\VulkanDevelopment\json\include -ID:\Users\rahul\Source\repos\VulkanDevelopment\thirdParty\stb -ID:\Users\rahul\Source\repos\VulkanDevelopment\tinyobjloader
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  OBJECT_FILE_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystem.dir\AssetSystem.pdb
+  TARGET_PDB = AssetSystem\AssetSystem.pdb
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target AssetSystem
+
+
+#############################################
+# Link the static library AssetSystem\AssetSystem.lib
+
+build AssetSystem\AssetSystem.lib: CXX_STATIC_LIBRARY_LINKER__AssetSystem_Debug AssetSystem\CMakeFiles\AssetSystem.dir\asset_loader.cpp.obj AssetSystem\CMakeFiles\AssetSystem.dir\asset_main.cpp.obj AssetSystem\CMakeFiles\AssetSystem.dir\mesh_asset.cpp.obj AssetSystem\CMakeFiles\AssetSystem.dir\texture_asset.cpp.obj || tinyobjloader\tinyobjloader.lib
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = AssetSystem\CMakeFiles\AssetSystem.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = AssetSystem\CMakeFiles\AssetSystem.dir\AssetSystem.pdb
+  TARGET_FILE = AssetSystem\AssetSystem.lib
+  TARGET_PDB = AssetSystem\AssetSystem.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build AssetSystem\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\AssetSystem && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build AssetSystem\edit_cache: phony AssetSystem\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build AssetSystem\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\AssetSystem && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\Users\rahul\Source\repos\VulkanDevelopment -BD:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build AssetSystem\rebuild_cache: phony AssetSystem\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build AssetSystem\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build AssetSystem\CMakeFiles\install.util: CUSTOM_COMMAND AssetSystem\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\AssetSystem && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build AssetSystem\install: phony AssetSystem\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build AssetSystem\CMakeFiles\install\local.util: CUSTOM_COMMAND AssetSystem\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\AssetSystem && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build AssetSystem\install\local: phony AssetSystem\CMakeFiles\install\local.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/rahul/Source/repos/VulkanDevelopment/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build json\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\json && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build json\edit_cache: phony json\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build json\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\json && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\Users\rahul\Source\repos\VulkanDevelopment -BD:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build json\rebuild_cache: phony json\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build json\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build json\CMakeFiles\install.util: CUSTOM_COMMAND json\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\json && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build json\install: phony json\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build json\CMakeFiles\install\local.util: CUSTOM_COMMAND json\all
+  COMMAND = cmd.exe /C "cd /D D:\Users\rahul\Source\repos\VulkanDevelopment\out\build\x64-debug\json && "D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build json\install\local: phony json\CMakeFiles\install\local.util
+
+# =============================================================================
 # Target aliases.
+
+build AssetSystem: phony AssetSystem\AssetSystem.lib
+
+build AssetSystem.lib: phony AssetSystem\AssetSystem.lib
+
+build AssetSystemTool: phony AssetSystem\AssetSystemTool.exe
+
+build AssetSystemTool.exe: phony AssetSystem\AssetSystemTool.exe
 
 build CommonSrc: phony ovr_sdk_win_32.0.0\Samples\CommonSrc\CommonSrc.lib
 
@@ -2878,6 +3299,10 @@ build VulkanDevelopment: phony VulkanDevelopment\VulkanDevelopment.exe
 
 build VulkanDevelopment.exe: phony VulkanDevelopment\VulkanDevelopment.exe
 
+build imgui: phony imgui\imgui.lib
+
+build imgui.lib: phony imgui\imgui.lib
+
 build spdlog: phony spdlog\spdlogd.lib
 
 build spdlogd.lib: phony spdlog\spdlogd.lib
@@ -2904,7 +3329,14 @@ build vk-bootstrap.lib: phony vk-bootstrap\vk-bootstrap.lib
 #############################################
 # Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug
 
-build all: phony VulkanDevelopment\all src\all thirdParty\all vk-bootstrap\all tinyobjloader\all glm\all ovr_sdk_win_32.0.0\all spdlog\all entt\all TestingTargets\all
+build all: phony VulkanDevelopment\all src\all thirdParty\all vk-bootstrap\all tinyobjloader\all glm\all ovr_sdk_win_32.0.0\all spdlog\all entt\all TestingTargets\all imgui\all AssetSystem\all json\all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/AssetSystem
+
+build AssetSystem\all: phony AssetSystem\AssetSystemTool.exe AssetSystem\AssetSystem.lib
 
 # =============================================================================
 
@@ -2940,6 +3372,20 @@ build glm\all: phony glm\glm\all
 # Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/glm/glm
 
 build glm\glm\all: phony
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/imgui
+
+build imgui\all: phony imgui\imgui.lib
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/rahul/Source/repos/VulkanDevelopment/out/build/x64-debug/json
+
+build json\all: phony
 
 # =============================================================================
 
@@ -3088,14 +3534,14 @@ build vk-bootstrap\all: phony vk-bootstrap\vk-bootstrap.lib
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\TestingTargets\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\entt\CMakeLists.txt ..\..\..\entt\cmake\in\EnTTConfig.cmake.in ..\..\..\entt\cmake\in\entt.pc.in ..\..\..\entt\cmake\modules\JoinPaths.cmake ..\..\..\glm\CMakeLists.txt ..\..\..\glm\glm\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVRKernel\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVR\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Logging\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeLists.txt ..\..\..\spdlog\CMakeLists.txt ..\..\..\spdlog\cmake\ide.cmake ..\..\..\spdlog\cmake\utils.cmake ..\..\..\src\CMakeLists.txt ..\..\..\thirdParty\CMakeLists.txt ..\..\..\tinyobjloader\CMakeLists.txt ..\..\..\tinyobjloader\cmake_uninstall.cmake.in ..\..\..\tinyobjloader\tinyobjloader-config.cmake.in ..\..\..\tinyobjloader\tinyobjloader.pc.in ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.23.22060601-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMajorVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindOpenGL.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindThreads.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindVulkan.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake
+build build.ninja: RERUN_CMAKE | ..\..\..\AssetSystem\CMakeLists.txt ..\..\..\CMakeLists.txt ..\..\..\TestingTargets\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\entt\CMakeLists.txt ..\..\..\entt\cmake\in\EnTTConfig.cmake.in ..\..\..\entt\cmake\in\entt.pc.in ..\..\..\entt\cmake\modules\JoinPaths.cmake ..\..\..\glm\CMakeLists.txt ..\..\..\glm\glm\CMakeLists.txt ..\..\..\imgui\CMakeLists.txt ..\..\..\json\CMakeLists.txt ..\..\..\json\cmake\config.cmake.in ..\..\..\json\cmake\nlohmann_jsonConfigVersion.cmake.in ..\..\..\json\cmake\pkg-config.pc.in ..\..\..\ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVRKernel\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVR\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Logging\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeLists.txt ..\..\..\spdlog\CMakeLists.txt ..\..\..\spdlog\cmake\ide.cmake ..\..\..\spdlog\cmake\utils.cmake ..\..\..\src\CMakeLists.txt ..\..\..\thirdParty\CMakeLists.txt ..\..\..\tinyobjloader\CMakeLists.txt ..\..\..\tinyobjloader\cmake_uninstall.cmake.in ..\..\..\tinyobjloader\tinyobjloader-config.cmake.in ..\..\..\tinyobjloader\tinyobjloader.pc.in ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.23.22060601-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMajorVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\ExternalProject.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindOpenGL.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindThreads.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindVulkan.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\..\..\CMakeLists.txt ..\..\..\TestingTargets\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\entt\CMakeLists.txt ..\..\..\entt\cmake\in\EnTTConfig.cmake.in ..\..\..\entt\cmake\in\entt.pc.in ..\..\..\entt\cmake\modules\JoinPaths.cmake ..\..\..\glm\CMakeLists.txt ..\..\..\glm\glm\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVRKernel\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVR\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Logging\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeLists.txt ..\..\..\spdlog\CMakeLists.txt ..\..\..\spdlog\cmake\ide.cmake ..\..\..\spdlog\cmake\utils.cmake ..\..\..\src\CMakeLists.txt ..\..\..\thirdParty\CMakeLists.txt ..\..\..\tinyobjloader\CMakeLists.txt ..\..\..\tinyobjloader\cmake_uninstall.cmake.in ..\..\..\tinyobjloader\tinyobjloader-config.cmake.in ..\..\..\tinyobjloader\tinyobjloader.pc.in ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.23.22060601-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMajorVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindOpenGL.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindThreads.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindVulkan.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake: phony
+build ..\..\..\AssetSystem\CMakeLists.txt ..\..\..\CMakeLists.txt ..\..\..\TestingTargets\CMakeLists.txt ..\..\..\VulkanDevelopment\CMakeLists.txt ..\..\..\entt\CMakeLists.txt ..\..\..\entt\cmake\in\EnTTConfig.cmake.in ..\..\..\entt\cmake\in\entt.pc.in ..\..\..\entt\cmake\modules\JoinPaths.cmake ..\..\..\glm\CMakeLists.txt ..\..\..\glm\glm\CMakeLists.txt ..\..\..\imgui\CMakeLists.txt ..\..\..\json\CMakeLists.txt ..\..\..\json\cmake\config.cmake.in ..\..\..\json\cmake\nlohmann_jsonConfigVersion.cmake.in ..\..\..\json\cmake\pkg-config.pc.in ..\..\..\ovr_sdk_win_32.0.0\3rdParty\TinyXml\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVRKernel\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\LibOVR\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Logging\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\CommonSrc\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\GuardianSystemDemo\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusPerfStatsSample\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX11\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_DX12\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_GL\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusRoomTiny\OculusRoomTiny_Vk\CMakeLists.txt ..\..\..\ovr_sdk_win_32.0.0\Samples\OculusWorldDemo\CMakeLists.txt ..\..\..\spdlog\CMakeLists.txt ..\..\..\spdlog\cmake\ide.cmake ..\..\..\spdlog\cmake\utils.cmake ..\..\..\src\CMakeLists.txt ..\..\..\thirdParty\CMakeLists.txt ..\..\..\tinyobjloader\CMakeLists.txt ..\..\..\tinyobjloader\cmake_uninstall.cmake.in ..\..\..\tinyobjloader\tinyobjloader-config.cmake.in ..\..\..\tinyobjloader\tinyobjloader.pc.in ..\..\..\vk-bootstrap\CMakeLists.txt ..\..\..\vk-bootstrap\gen\CurrentBuildVulkanVersion.cmake CMakeCache.txt CMakeFiles\3.23.22060601-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.23.22060601-MSVC_2\CMakeSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\BasicConfigVersion-SameMajorVersion.cmake.in D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePackageConfigHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakePrintHelpers.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeRCInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckIncludeFile.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\CheckLibraryExists.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\ExternalProject.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindOpenGL.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindPackageMessage.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindThreads.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\FindVulkan.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\GNUInstallDirs.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\Windows.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake D$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.23\Modules\WriteBasicConfigVersionFile.cmake: phony
 
 
 #############################################

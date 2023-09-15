@@ -10,11 +10,14 @@ project ("VulkanDevelopment")
     #           this applies to targets created in this dir and subdirectories
 #add_link_option($<$<CONFIG:Debug>:/INCREMENTAL>)
 #add_compile_option($<$<CONFIG:Debug>:/ZI>)
+project(vulkan-development)
 
+set(CMAKE_CXX_FLAGS_DEBUG "/MDd /ZI /Ob0 /Od /RTC1")
 
 #option(VK_BOOTSTRAP_VULKAN_HEADER_DIR "HELP: vulkan Path" D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
 set(VK_BOOTSTRAP_VULKAN_HEADER_DIR  D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
 set(Vulkan_INCLUDE_DIR D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
+
 # Include sub-projects.
 add_subdirectory ("VulkanDevelopment")
 add_subdirectory ("src")
@@ -26,6 +29,9 @@ add_subdirectory(ovr_sdk_win_32.0.0)
 add_subdirectory(spdlog)
 add_subdirectory(entt)
 add_subdirectory(TestingTargets)
+add_subdirectory(imgui)
+add_subdirectory(AssetSystem)
+add_subdirectory(json)
 
 
 

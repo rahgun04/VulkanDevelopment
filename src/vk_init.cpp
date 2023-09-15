@@ -330,3 +330,4 @@ VkWriteDescriptorSet vkinit::write_descriptor_buffer(VkDescriptorType type, VkDe
 
 	return write;
 }
+
