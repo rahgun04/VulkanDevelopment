@@ -5,17 +5,8 @@ include(CMakePrintHelpers)
 
 
 
-find_library(
-        LIB_SDL_FILE 
-        SDL2
-        PATHS 
-            D:\\SDL2-2.0.22\\lib\\x64)
-
-find_library(
-        LIB_VULK_FILE 
-        vulkan-1
-        PATHS 
-            D:/VulkanSDK/1.3.216.0/Lib)
+find_package(SDL2 REQUIRED)
+find_package(Vulkan REQUIRED FATAL_ERROR)
 
 
 
@@ -37,8 +28,7 @@ endif()
 
 
 add_library(SRC STATIC ${Sources})
-link_directories(SRC D:/VulkanSDK/1.3.216.0/Lib)
-target_include_directories(SRC PUBLIC D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan D:\\SDL2-2.0.22\\include)
+target_include_directories(SRC PUBLIC ${VULKAN_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
 target_include_directories(SRC PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-cmake_print_variables(LIB_SDL_FILE)
-target_link_libraries(SRC ${LIB_SDL_FILE} ${LIB_VULK_FILE} vk-bootstrap::vk-bootstrap vma glm::glm tinyobjloader)
+
+target_link_libraries(SRC ${SDL2_LIBRARIES} ${VULKAN_LIB_LIST} vulkan vk-bootstrap::vk-bootstrap vma glm::glm tinyobjloader)

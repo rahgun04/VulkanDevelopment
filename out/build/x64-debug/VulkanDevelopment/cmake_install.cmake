@@ -1,8 +1,8 @@
-# Install script for directory: D:/Users/rahul/Source/repos/VulkanDevelopment/VulkanDevelopment
+# Install script for directory: C:/Users/rahul/source/repos/rahgun04/VulkanDevelopment/VulkanDevelopment
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "D:/Users/rahul/Source/repos/VulkanDevelopment/out/install/x64-debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/rahul/Source/Repos/rahgun04/VulkanDevelopment/out/install/x64-debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
