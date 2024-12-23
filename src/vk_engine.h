@@ -41,31 +41,16 @@ struct DeletionQueue
 class VulkanEngine {
 public:
 	glm::mat4 cameraRotationTransform{ 0 };
-	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
-	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
+	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };
+	glm::vec3 _camPos{ 0.f,-6.f,-10.f };
 
 	float pitch{ 0 };
 	float yaw{ 0 };
 
 
 
-	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
-	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
-
-	float pitch{ 0 };
-	float yaw{ 0 };
-
-	glm::mat4 cameraRotationTransform;
 
 
-
-	glm::vec3 _tgtPos{ 0.f,-6.f,-10.f };;
-	glm::vec3 _camPos{ 0.f,-6.f,-10.f };;
-
-	float pitch{ 0 };
-	float yaw{ 0 };
-
-	glm::mat4 cameraRotationTransform;
 
 	Mesh _monkeyMesh;
 

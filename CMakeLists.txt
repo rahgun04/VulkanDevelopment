@@ -7,9 +7,14 @@ project ("VulkanDevelopment")
 
 
 
+
+
+
 #option(VK_BOOTSTRAP_VULKAN_HEADER_DIR "HELP: vulkan Path" D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
-set(VK_BOOTSTRAP_VULKAN_HEADER_DIR  D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
-set(Vulkan_INCLUDE_DIR D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
+#set(VK_BOOTSTRAP_VULKAN_HEADER_DIR  D:\\VulkanSDK\\1.3.216.0\\Include\\vulkan)
+set(Vulkan_INCLUDE_DIR C:\\VulkanSDK\\1.3.296.0\\Include)
+#set(VULKAN_INCLUDE_DIRS C:\\VulkanSDK\\1.3.296.0\\Include\\vulkan)
+
 # Include sub-projects.
 add_subdirectory ("VulkanDevelopment")
 add_subdirectory ("src")
